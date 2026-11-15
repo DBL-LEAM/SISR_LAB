@@ -6021,6 +6021,74 @@
       --gf-back-rim: rgba(255, 255, 255, .16);
     }
 
+
+    /* ---------- Sujets de TP ---------- */
+    .tp-home-head { margin-top: 30px; }
+    .tp-grid { margin-bottom: 8px; }
+    .tp-card { border-top: 3px solid var(--tpc); }
+    .tp-card .bar { height: 5px; }
+    .tp-lvl-sub { font-weight: 500; color: var(--muted); font-size: .7em; }
+    .tp-next {
+      display: flex; align-items: center; gap: 14px; margin-top: 20px; padding: 16px 18px;
+      color: var(--ink); border-left: 4px solid var(--tpc);
+      transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+    }
+    .tp-next:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow); }
+    .tp-next-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+    .tp-next-txt b { font-size: 16px; }
+    .tp-next-txt > span:last-child { font-size: 13px; color: var(--muted); }
+    .tp-page { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 18px; align-items: start; }
+    .tp-main, .tp-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .tp-side { position: sticky; top: 76px; }
+    .tp-head { padding: 20px 22px; border-top: 3px solid var(--tpc); }
+    .tp-head h1 { font-size: clamp(22px, 2.6vw, 30px); margin: 12px 0 6px; }
+    .tp-head .brief { margin: 10px 0 0; font-size: 15px; color: var(--ink-2); line-height: 1.65; }
+    .tp-client { margin: 0; font-size: 13.5px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .tp-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tp-note { display: flex; gap: 10px; align-items: flex-start; padding: 13px 16px; font-size: 14px; color: var(--ink-2); background: var(--signal-soft); border-color: color-mix(in srgb, var(--signal) 35%, var(--line)); }
+    .tp-note svg { flex: none; color: var(--signal); margin-top: 2px; }
+    .tp-hint { margin: 2px 0 6px; font-size: 12.5px; color: var(--muted); }
+    .tp-goal { cursor: pointer; border-radius: 6px; }
+    .tp-goal:hover .box { border-color: var(--tpc); }
+    .tp-goal:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .tp-goal .gt { line-height: 1.55; }
+    .tp-sec { padding: 16px 18px; }
+    .tp-sec h2 { font-size: 15px; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .tp-sec h2 svg { color: var(--tpc, var(--accent)); }
+    .tp-ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+    .tp-tips code, .tp-goal code { font-size: .88em; overflow-wrap: anywhere; }
+    .tp-sum-note { font-weight: 400; font-size: 12px; color: var(--faint); margin-left: 8px; }
+    .tp-dl { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .tp-dl div { display: flex; flex-direction: column; gap: 1px; padding-bottom: 8px; border-bottom: 1px dashed var(--line); }
+    .tp-dl div:last-child { border-bottom: 0; padding-bottom: 0; }
+    .tp-dl dt { font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--faint); font-weight: 600; }
+    .tp-dl dd { margin: 0; font-size: 13.5px; font-family: var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+    .tp-links { display: flex; flex-direction: column; gap: 6px; }
+    .tp-link { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 10px; color: var(--ink); }
+    .tp-link:hover { text-decoration: none; background: var(--surface-2); }
+    .tp-link .dev-ico.sm, .tp-head .dev-ico.sm { width: 30px; height: 30px; border-radius: 8px; }
+    .tp-link .dev-ico.sm svg { width: 15px; height: 15px; }
+    .tp-link b { display: block; font-size: 13.5px; font-weight: 600; line-height: 1.3; }
+    .tp-link span span { font-size: 12px; color: var(--muted); }
+    .tp-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tp-table-wrap { overflow-x: auto; }
+    .tp-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .tp-table th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--faint); padding: 6px 8px; border-bottom: 1px solid var(--line); }
+    .tp-table td { padding: 8px; border-bottom: 1px dashed var(--line); color: var(--ink-2); }
+    .tp-table tr:last-child td { border-bottom: 0; }
+    .tag.tp-crit { background: var(--err-soft); color: var(--err); }
+    .tag.tp-warn { background: var(--signal-soft); color: var(--signal); }
+    .tp-pdf iframe { width: 100%; height: 70vh; min-height: 420px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); }
+    @media (max-width: 1100px) {
+      .tp-page { grid-template-columns: minmax(0, 1fr); }
+      .tp-side { position: static; }
+    }
+    @media (max-width: 640px) {
+      .tp-head { padding: 16px; }
+      .tp-actions .btn { flex: 1; }
+      .tp-sum-note { display: none; }
+      .tp-pdf iframe { height: 60vh; min-height: 320px; }
+    }
   </style>
 </head>
 
@@ -13479,7 +13547,7 @@ Security Violation Count   : 0`;
       P: null,
       listeners: [],
       sync: { state: 'local', ref: null, writing: false, dirty: false, timer: null, lastRemote: '', gen: 0, fails: 0 },
-      blank() { return { v: 1, read: {}, quiz: {}, flash: {}, labs: {}, last: null }; },
+      blank() { return { v: 1, read: {}, quiz: {}, flash: {}, labs: {}, tp: {}, last: null }; },
       load() {
         let p = null;
         try { const raw = localStorage.getItem(LS_KEY); if (raw) p = JSON.parse(raw); } catch (e) { p = null; }
@@ -13488,7 +13556,7 @@ Security Violation Count   : 0`;
       norm(p) {
         const b = this.blank();
         if (!p || typeof p !== 'object') return b;
-        for (const k of ['read', 'quiz', 'flash', 'labs']) b[k] = p[k] && typeof p[k] === 'object' ? p[k] : {};
+        for (const k of ['read', 'quiz', 'flash', 'labs', 'tp']) b[k] = p[k] && typeof p[k] === 'object' ? p[k] : {};
         b.last = p.last && typeof p.last === 'object' ? p.last : null;
         return b;
       },
@@ -13514,6 +13582,12 @@ Security Violation Count   : 0`;
           const x = a.labs[k] || {}, y = b.labs[k] || {};
           m.labs[k] = { done: Math.max(x.done || 0, y.done || 0) || 0, best: Math.max(x.best || 0, y.best || 0), t: Math.max(x.t || 0, y.t || 0) };
           if (!m.labs[k].done) delete m.labs[k].done;
+        }
+        /* étapes de TP : horodatage positif = cochée, négatif = décochée ; la plus récente gagne */
+        for (const k of keys(a.tp, b.tp)) {
+          const x = (a.tp && a.tp[k]) || {}, y = (b.tp && b.tp[k]) || {}, s = {};
+          for (const j of keys(x, y)) { const u = x[j] || 0, v = y[j] || 0; s[j] = Math.abs(v) > Math.abs(u) ? v : u; }
+          m.tp[k] = s;
         }
         const la = a.last, lb = b.last;
         m.last = !la ? lb : !lb ? la : ((lb.t || 0) > (la.t || 0) ? lb : la);
@@ -13626,6 +13700,8 @@ Security Violation Count   : 0`;
         this.changed();
       },
       isRead(cid, i) { return !!this.P.read[cid + ':' + i]; },
+      tpChecked(id, k) { const s = this.P.tp[id]; return !!(s && s[k] > 0); },
+      tpToggle(id, k, on) { const s = this.P.tp[id] || (this.P.tp[id] = {}); s[k] = on ? Date.now() : -Date.now(); this.changed(); },
       setLast(cid, i) { this.P.last = { c: cid, s: i, t: Date.now() }; this.saveLocal(); this.schedule(); },
       quizAnswer(key, ok) { this.P.quiz[key] = { ok: !!ok, t: Date.now() }; this.changed(); },
       flashGrade(key, good) {
@@ -13941,6 +14017,7 @@ Security Violation Count   : 0`;
       lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
       wave: '<path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0M2 17c2-4 4-4 6 0s4 4 6 0 4-4 6 0M2 7c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/>',
       arrowUR: '<path d="M7 17 17 7M8 7h9v9"/>',
+      doc: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',
       exam: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3V1.8M9 8h6M9 12h6M9 16h4"/><path d="m8.2 6.5-2 .6.6 1.1"/>',
       terms: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h2M7 12h2M7 16h2M12 8h5M12 12h5M12 16h3"/>',
       database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
@@ -14045,6 +14122,320 @@ Security Violation Count   : 0`;
     const DEV_ORDER = ['windows', 'linux', 'switch', 'router'];
     const DEV_ICON = { windows: 'windows', linux: 'linux', switch: 'switch', router: 'router', kali: 'kali' };
     const SB_ORDER = ['windows', 'linux', 'switch', 'router', 'kali'];
+    /* ===================== sujets de TP de l'enseignant (dossier sujettp/) ===================== */
+    const TP_DIR = 'sujettp/';
+    const TP_LVL = { 'SIO 1': { color: '#0b7a83', label: '1ʳᵉ année' }, 'SIO 2': { color: '#6a43b5', label: '2ᵉ année' } };
+    const TPS = [
+      {
+        id: 'nextcloud', file: 'Nextcloud.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-01-12', os: 'Debian', icon: 'database',
+        title: 'Partage de fichiers avec Nextcloud', short: 'Nextcloud',
+        client: 'Enseigne de prêt-à-porter',
+        context: 'Les points de vente doivent télécharger les affiches publicitaires du siège, les adapter à leur stock puis les imprimer. Il faut un dossier partagé en lecture seule et un espace personnel par magasin, accessibles par navigateur web.',
+        network: [['Réseau', '10.10.0.0/16 (salle)'], ['IP du service', '10.10.11.x/16 (x attribué par l’enseignant)'], ['Plateforme', 'VM Debian']],
+        steps: [
+          'Installer une VM Debian et lui attribuer l’IP 10.10.11.x/16 qui t’est attribuée.',
+          'Installer Nextcloud (ou une solution équivalente) avec sa pile web : serveur web, PHP, base de données.',
+          'Créer un compte administrateur (le siège) et au moins deux comptes utilisateurs (deux points de vente).',
+          'En tant qu’administrateur, créer un dossier partagé accessible <b>en lecture seule</b> aux utilisateurs.',
+          'Vérifier que chaque utilisateur dispose d’un espace de stockage strictement personnel.',
+          'Vérifier l’accès direct au service depuis un navigateur.',
+        ],
+        extra: ['L’accès par navigateur doit utiliser <b>HTTPS</b>.', 'Mettre en œuvre le client de synchronisation d’un dossier utilisateur sur une machine cliente.'],
+        legal: ['Quelle(s) responsabilité(s) pour la société et pour le salarié en cas d’hébergement de contenus illicites sur cet espace de stockage interne à l’entreprise ?'],
+        tips: [
+          'Pile LAMP : <code>apt install apache2 mariadb-server php libapache2-mod-php php-{mysql,gd,curl,mbstring,intl,xml,zip,bcmath,gmp}</code>.',
+          'Si l’accès par IP est refusé (« domaine non approuvé »), ajoute l’IP dans <code>trusted_domains</code> de <code>config/config.php</code>.',
+          'Lecture seule : partage le dossier avec un groupe « magasins » en décochant « Autoriser la modification ».',
+          'HTTPS : <code>a2enmod ssl</code>, <code>a2ensite default-ssl</code> et un certificat auto-signé (<code>openssl req -x509 -nodes -days 365 -newkey rsa:2048 …</code>).',
+          'Juridique : pense au statut d’hébergeur (LCEN), à la charte informatique et au pouvoir de contrôle de l’employeur.',
+        ],
+        needs: [], courses: ['14', 'CMD'], labs: ['lnx-decouverte', 'lnx-apache', 'lnx-ss'], skills: ['1.1', '1.4', '1.5', '1.6', '2.1'],
+      },
+      {
+        id: 'ldap', file: 'LDAP.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-01-22', os: 'Linux', icon: 'user',
+        title: 'Annuaire LDAP et authentification RADIUS', short: 'LDAP & RADIUS',
+        client: 'Communauté de communes (bibliothèques)',
+        context: 'Les bibliothèques de l’agglomération veulent une inscription unique : un annuaire commun, alimenté et consulté par tous les bibliothécaires. Ensuite, seuls les inscrits doivent pouvoir se brancher sur le réseau des espaces publics (prises RJ45 murales).',
+        network: [['LAN du poste', '172.30.x.0/24'], ['Passerelle', '172.30.x.254'], ['Gestion du switch', '172.30.x.253'], ['Plateforme', 'VM Linux']],
+        steps: [
+          'Remettre le switch du poste en <b>configuration usine</b>, puis configurer son adresse de gestion (172.30.x.253).',
+          'Installer un service d’annuaire LDAP sur une VM Linux.',
+          'Créer au moins trois entrées avec les attributs du formulaire de pré-inscription (nom, prénom, bibliothèque de rattachement, âge / date de naissance, courriel…).',
+          'Consulter l’annuaire depuis un logiciel tiers (par exemple le carnet d’adresses d’un client de messagerie).',
+          'Faire constater le service par l’enseignant dès qu’il est fonctionnel.',
+          'Partie 2 : installer un serveur <b>RADIUS</b> sur le LAN, adossé à l’annuaire.',
+          'Configurer le switch comme client RADIUS (NAS) : seuls les utilisateurs présents dans l’annuaire accèdent au LAN.',
+        ],
+        extra: [],
+        legal: ['Peut-on utiliser l’historique des emprunts d’un usager pour lui proposer des livres, avec ou sans son accord ?', 'Est-ce conforme au RGPD ? Si oui, quelles contraintes sur cette collecte ?'],
+        note: 'Ne détruis pas la VM à la fin : l’annuaire resservira pour GLPI, le WiFi et le SSO.',
+        tips: [
+          'OpenLDAP : <code>apt install slapd ldap-utils</code> puis <code>dpkg-reconfigure slapd</code> pour fixer le suffixe (ex. <code>dc=biblio,dc=local</code>).',
+          'Ajout d’entrées depuis un fichier LDIF : <code>ldapadd -x -D cn=admin,dc=biblio,dc=local -W -f usagers.ldif</code> ; vérification avec <code>ldapsearch -x -b dc=biblio,dc=local</code>.',
+          'FreeRADIUS : <code>apt install freeradius freeradius-ldap</code>, active le module <code>ldap</code>, déclare le switch dans <code>clients.conf</code>, teste avec <code>radtest</code>.',
+          'Côté Cisco (802.1X) : <code>aaa new-model</code>, <code>radius server …</code>, <code>dot1x system-auth-control</code>, puis <code>authentication port-control auto</code> sur les ports d’accès.',
+          'RGPD : finalité, consentement, minimisation, durée de conservation, droit d’opposition au profilage.',
+        ],
+        needs: [], courses: ['03', '13', '14'], labs: ['sw-base', 'sw-ssh', 'sw-portsec'], skills: ['1.1', '1.4', '1.5', '1.6', '2.1'],
+      },
+      {
+        id: 'glpi', file: 'GLPI.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-02-05', os: 'Linux', icon: 'target',
+        title: 'Centre d’assistance et gestion de parc avec GLPI', short: 'GLPI',
+        client: 'Selenia Software',
+        context: 'Le gérant veut suivre les bonnes pratiques ITIL : un centre de services où chaque salarié ouvre ses tickets, plus une base de connaissances / FAQ que tout le monde consulte et enrichit. Dans un second temps, l’inventaire automatique du parc.',
+        network: [['Plateforme', 'VM Linux (distribution libre)'], ['Comptes', '1 admin, 1 super-admin, ≥ 2 utilisateurs'], ['Annuaire', 'LDAP du projet précédent']],
+        steps: [
+          'Installer GLPI sur une VM Linux (choix de la distribution libre).',
+          'Mettre en place le centre de services : chaque salarié ouvre lui-même ses tickets via le réseau local.',
+          'Configurer les notifications : l’ouverture d’un ticket déclenche un mail à la personne visée.',
+          'Mettre en place la base de connaissances et la FAQ, consultables et enrichissables par les salariés.',
+          'Créer un seul compte admin, un seul super-admin et au moins deux comptes utilisateurs gérés via le <b>LDAP</b>.',
+          'Rédiger l’article « Mots de passe, accès, données : les règles d’or à respecter » dans la base de connaissances.',
+          'Partie 2 : interfacer un outil d’inventaire automatique qui remonte une station Windows et une station Linux (CPU, RAM, logiciels…).',
+        ],
+        extra: [],
+        legal: ['Le studio peut-il publier sous son nom un article de la base de connaissances rédigé par un salarié ? Si oui, à quelles conditions ? (droit d’auteur)'],
+        tips: [
+          'Installe les extensions PHP demandées par l’assistant, puis supprime <code>install/install.php</code> une fois l’installation terminée.',
+          'Annuaire : <i>Configuration › Authentification › Annuaires LDAP</i> (base DN, filtre de connexion <code>uid</code>).',
+          'Mails : <i>Configuration › Notifications</i>, active le suivi par courriel et renseigne un serveur SMTP.',
+          'Inventaire : depuis GLPI 10, active <i>Administration › Inventaire</i> et installe <b>GLPI Agent</b> sur les postes (<code>--server http://ip/glpi/</code>).',
+          'Droit d’auteur : un salarié reste auteur de ses écrits (sauf logiciel) ; une cession écrite et explicite est nécessaire, et le droit moral (nom) demeure.',
+        ],
+        needs: ['ldap'], courses: ['14', 'CMD'], labs: ['lnx-decouverte', 'lnx-apache'], skills: ['1.1', '1.2', '1.4', '1.5', '2.1', '2.2', '2.3', '3.3'],
+      },
+      {
+        id: 'nas', file: 'NAS.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-02-12', os: 'Linux', icon: 'database',
+        title: 'Stockage en réseau (NAS) résilient', short: 'NAS',
+        client: 'Association (matériel récupéré)',
+        context: 'Une association a récupéré des PC et beaucoup de disques durs. Elle veut un espace de stockage par adhérent, gratuit (légalement), qui survive à la perte d’au moins deux disques, avec consultation des logs de connexion par l’administrateur.',
+        network: [['Réseau', '10.10.0.0/16 (salle S4)'], ['Passerelle', '10.10.0.1'], ['Plage', '10.10.x.0 – 10.10.x.255 (x attribué)'], ['Disques', '5 Go maximum chacun']],
+        steps: [
+          'Installer le service sur une (ou plusieurs) VM Linux, distribution libre.',
+          'Ajouter plusieurs disques virtuels et monter un <b>RAID logiciel</b> résistant à la perte de deux disques.',
+          'Créer au moins deux comptes utilisateurs, chacun avec un dossier accessible uniquement à son propriétaire.',
+          'Rendre le service accessible via le LAN.',
+          'Mettre ensuite en place un accès par navigateur web.',
+          'Permettre à l’administrateur de consulter les logs de connexion des utilisateurs.',
+          'Tester la résilience : simuler la panne de deux disques et vérifier que les données restent accessibles.',
+        ],
+        extra: [],
+        legal: [],
+        tips: [
+          'Deux disques perdus sans perte de données : <b>RAID 6</b> (4 disques minimum) ou RAID-Z2 sous ZFS.',
+          '<code>mdadm --create /dev/md0 --level=6 --raid-devices=4 /dev/sd[b-e]</code>, état avec <code>cat /proc/mdstat</code>, panne simulée avec <code>mdadm /dev/md0 --fail /dev/sdb</code>.',
+          'Samba : la section <code>[homes]</code> avec <code>valid users = %S</code> donne un dossier privé par compte.',
+          'Logs : module <code>vfs objects = full_audit</code> de Samba, <code>journalctl -u smbd</code>, <code>last</code>.',
+          'Solutions clés en main gratuites : OpenMediaVault, TrueNAS (justifie ton choix dans le compte rendu).',
+        ],
+        needs: [], courses: ['CMD'], labs: ['lnx-decouverte', 'lnx-droits'], skills: ['1.1', '1.2', '1.4', '1.5', '1.6', '2.1', '2.2', '2.3'],
+      },
+      {
+        id: 'restauration', file: 'Restauration.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-03-13', os: 'Linux & Windows', icon: 'retry',
+        title: 'Sauvegarde et restauration des postes', short: 'Sauvegarde',
+        client: 'Selenia Software',
+        context: 'Le gérant veut des sauvegardes complètes des stations, stockées sur le serveur local et restaurables à travers le réseau. Solution gratuite, pérenne et légale, pour Linux et Windows, planifiée hors des heures de bureau.',
+        network: [['Réseau', '10.10.0.0/16 (salle)'], ['Passerelle', '10.10.0.1'], ['Stockage', 'NAS du projet précédent'], ['Volume', '15 Go maximum à sauvegarder']],
+        steps: [
+          'Étape 1 : réaliser une sauvegarde complète d’une machine.',
+          'Étape 2 : modifier de façon sensible la machine sauvegardée.',
+          'Étape 3 : restaurer la sauvegarde de l’étape 1 depuis le serveur, à travers le réseau.',
+          'Mener ces trois étapes pour une station <b>Linux</b> et pour une station <b>Windows</b>.',
+          'Stocker les sauvegardes sur le NAS du projet précédent.',
+          'Planifier les sauvegardes complètes hors des heures de bureau, avec écrasement des anciennes itérations.',
+          'Mettre en place une sauvegarde incrémentielle ou différentielle et justifier ce choix.',
+          'Rédiger une documentation complète des procédures de sauvegarde et de restauration, pour le gérant (bon niveau en informatique, pas en réseau).',
+        ],
+        extra: ['Rédiger une note au client : pourquoi le stockage local des sauvegardes n’est pas optimal.', 'Proposer trois compléments ou alternatives, avec un tableau de leurs coûts, contraintes et avantages.'],
+        legal: ['Pourquoi faire attention à la localisation des serveurs et au siège social de l’hébergeur quand on externalise des sauvegardes ?', 'À quels risques s’expose une entreprise française qui sauvegarde hors de l’UE ?'],
+        tips: [
+          'Outils gratuits : <b>Clonezilla</b> (image disque, restauration via le réseau), <b>UrBackup</b> (client/serveur, planification, incrémentiel), Veeam Agent Free.',
+          'Incrémentielle : depuis la dernière sauvegarde (rapide, restauration plus longue). Différentielle : depuis la dernière complète (restauration en 2 morceaux).',
+          'Planification Linux : <code>crontab -e</code> puis par exemple <code>0 22 * * 1-5</code> (22 h du lundi au vendredi).',
+          'Règle <b>3-2-1</b> : 3 copies, 2 supports différents, 1 copie hors site — base de ta note au client.',
+          'Hors UE : transferts encadrés par le RGPD (chapitre V), lois extraterritoriales comme le Cloud Act américain.',
+        ],
+        needs: ['nas'], courses: ['13', '14'], labs: ['lnx-decouverte'], skills: ['1.1', '1.2', '1.4', '1.5', '1.6', '2.1', '2.2', '2.3'],
+      },
+      {
+        id: 'wifi', file: 'WiFi.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-03-30', os: 'Libre (à justifier)', icon: 'wave',
+        title: 'WiFi public avec portail captif', short: 'WiFi public',
+        client: 'Selenia Software',
+        context: 'Le WiFi de la box est saturé par des téléchargements personnels qui gênent la réplication du serveur. Il faut une borne WiFi dans la zone d’accueil, avec création de compte, authentification et journalisation des connexions — pas un accès « totalement ouvert ».',
+        network: [['LAN du poste', '172.30.x.0/24'], ['Passerelle', '172.30.x.254'], ['DHCP', 'aucun (reprendre celui du S1)'], ['Annuaire', 'LDAP possible']],
+        steps: [
+          'Mettre en place un réseau WiFi sur le LAN existant, borne placée dans la zone d’accueil.',
+          'Portail captif : s’identifier et/ou créer un compte (au minimum nom, prénom, courriel), éventuellement via le LDAP.',
+          'Sur le portail, informer de la collecte des données et de son but, et recueillir l’accord de l’utilisateur.',
+          'Enregistrer les logs : date, horaire et durée de chaque connexion, ainsi que les sites visités.',
+          'Désactiver ou supprimer automatiquement les comptes 30 minutes après la dernière utilisation (ou la création).',
+          'Proposer, voire mettre en place, une protection contre l’intrusion dans le réseau de l’entreprise via le WiFi.',
+          'En fin de projet : remettre la borne en configuration usine (étape détaillée dans le compte rendu).',
+        ],
+        extra: ['Filtrer la consultation de certains sites : bloquer <code>leboncoin.fr</code> et <code>youtube.com</code>.', 'Limiter le débit du réseau sans fil au profit du réseau filaire.'],
+        legal: ['Rédiger les conditions d’utilisation du service, à accepter lors de la création du compte.'],
+        tips: [
+          'pfSense ou OPNsense intègrent un <b>Captive Portal</b> (comptes locaux, vouchers ou RADIUS, déconnexion après inactivité).',
+          'Sites visités : proxy <b>Squid</b> (journal <code>access.log</code>) ; filtrage avec SquidGuard ou une liste noire DNS.',
+          'Isolement : WiFi invité dans un VLAN dédié et règles de pare-feu interdisant l’accès à 172.30.x.0/24.',
+          'Les logs de connexion d’un accès public sont soumis à une obligation de conservation (1 an) : mentionne-la dans les CGU.',
+        ],
+        needs: ['ldap'], courses: ['03', '13', '14'], labs: ['sw-vlan', 'rt-acl'], skills: ['1.1', '1.4', '1.5', '2.1', '2.2', '3.1', '3.3', '3.4', '3.5'],
+      },
+      {
+        id: 'ad', file: 'AD.pdf', level: 'SIO 1', year: '2025/2026', demo: '2026-05-11', os: 'Windows Server', icon: 'windows',
+        title: 'Active Directory, GPO et SSO', short: 'Active Directory',
+        client: 'Selenia Software',
+        context: 'Deux gérants, trois administratifs et seize développeurs. Le gérant veut un Active Directory pour gérer postes et utilisateurs, les regrouper par catégorie et leur appliquer des GPO selon leurs besoins.',
+        network: [['LAN du poste', '172.30.x.0/24'], ['Passerelle', '172.30.x.254'], ['Domaine', 'selenia.local'], ['Serveur', 'Windows Server 2019/2022/2025 (évaluation)']],
+        steps: [
+          'Installer Windows Server et un unique contrôleur de domaine sur le LAN du poste.',
+          'Créer les comptes Dir1–Dir2 (gérants), Adm1–Adm3 (administratifs) et Dev1–Dev5 (développeurs) — un script est pertinent.',
+          'Stratégie de comptes : verrouillage 1 h après 3 mots de passe erronés, changement mensuel obligatoire sans réutilisation.',
+          'DHCP : plages 172.30.x.30–40 et 172.30.x.70–80, bail de 2 h, passerelle, DNS et domaine <code>selenia.local</code>.',
+          'Partages : un dossier privé par compte (quota 1 Go) et trois dossiers par rôle — gérant, administratif, développeur (quota 5 Go).',
+          'GPO : bloquer cmd, terminal, PowerShell et le registre pour tous les comptes.',
+          'GPO : bloquer les supports amovibles (clés USB) pour les comptes administratifs.',
+          'GPO : déployer PuTTY sur les postes de l’entreprise.',
+          'Utiliser les comptes AD pour s’authentifier dans GLPI (sur le Linux physique), avec au moins deux profils non administrateurs.',
+          'Auditer l’AD (PingCastle, Purple Knight…) : identifier deux failles puis les corriger.',
+          'Mettre en place un profil itinérant.',
+          'Intégrer un PC physique de contrôle au domaine.',
+        ],
+        extra: [],
+        legal: [],
+        tips: [
+          '<code>Install-WindowsFeature AD-Domain-Services -IncludeManagementTools</code> puis <code>Install-ADDSForest -DomainName selenia.local</code>.',
+          'Comptes en série : une boucle <code>New-ADUser</code> (ou <code>Import-Csv … | ForEach-Object { New-ADUser … }</code>) et des groupes par rôle.',
+          'Mots de passe : <i>Default Domain Policy</i> — seuil 3, durée 60 min, âge maximal 30 jours, historique ≥ 1.',
+          'DHCP : une étendue .30–.80 avec une plage d’exclusion .41–.69 couvre les deux plages demandées.',
+          'Quotas : rôle <b>FSRM</b> (gestionnaire de ressources du serveur de fichiers), quotas stricts de 1 Go et 5 Go.',
+          'GPO utilisateur › Modèles d’administration › Système : « Désactiver l’accès à l’invite de commandes » et « Empêcher l’accès aux outils de modification du Registre ».',
+          'PuTTY : paquet <code>.msi</code> sur un partage UNC, publié par GPO ordinateur › Installation de logiciel.',
+        ],
+        needs: ['glpi'], courses: ['06', '13', 'CMD'], labs: ['win-gpo', 'win-ps', 'win-nslookup'], skills: ['1.1', '1.2', '1.4', '1.5', '2.1', '2.2', '2.3', '3.3', '3.4', '3.5'],
+      },
+      {
+        id: 'dns', file: 'DNS.pdf', level: 'SIO 2', year: '2026/2027', demo: '2026-09-10', os: 'Linux', icon: 'net',
+        title: 'Serveur DNS sous Linux', short: 'DNS',
+        client: 'PME cliente d’Egnom',
+        context: 'L’entreprise a acquis un nom de domaine et veut héberger localement son site vitrine. Ses machines doivent accéder à Internet, sans pouvoir résoudre certains domaines inutiles à l’activité.',
+        network: [['WAN (Internet simulé)', '10.10.0.0/16'], ['LAN du poste', '172.30.x.0/24'], ['Zone parente', 'ac-monge.fr'], ['Serveur faisant autorité', '10.10.0.1']],
+        steps: [
+          'Choisir un nom de domaine (un nom de ville) dans la zone <code>ac-monge.fr</code>.',
+          'Mettre en place un DHCP sur ton LAN.',
+          'Héberger une page statique sur une machine du LAN, accessible depuis le WAN.',
+          'Installer un DNS primaire faisant autorité sur ta zone : ta page et celles des autres postes doivent être accessibles par leur nom.',
+          'Empêcher la résolution de <code>leboncoin.fr</code> et <code>amazon.uk</code> depuis le LAN.',
+          'Créer une seconde page différente, puis mettre en place un round robin.',
+          'Implémenter la résolution inverse et expliquer brièvement pourquoi elle est nécessaire.',
+          'Implémenter DNS over TLS.',
+        ],
+        extra: [],
+        legal: ['Un nom de domaine peut entrer en conflit avec la propriété intellectuelle : droit des marques, droit d’auteur, protection du nom patronymique.'],
+        tips: [
+          'Bind9 : zone <code>type master</code> dans <code>named.conf.local</code> ; vérifie avec <code>named-checkconf</code> et <code>named-checkzone</code>.',
+          'Pour être joignable depuis les autres LAN, la zone parente doit te déléguer ton domaine (enregistrements NS et glue).',
+          'Blocage : zones locales vides ou une zone <b>RPZ</b> (<code>response-policy</code>) qui renvoie NXDOMAIN.',
+          'Round robin : deux enregistrements A pour le même nom. Inverse : zone <code>x.30.172.in-addr.arpa</code> avec des PTR, test <code>dig -x</code>.',
+          'DNS over TLS : bloc <code>tls</code> et <code>listen-on port 853 tls …</code> (Bind ≥ 9.18) ou Unbound / stunnel ; test avec <code>kdig +tls</code>.',
+        ],
+        needs: [], courses: ['01', '02', '14'], labs: ['lnx-dig', 'win-nslookup', 'lnx-tcpdump', 'lnx-apache'], skills: [],
+      },
+      {
+        id: 'parefeu', file: 'Pare-feu.pdf', level: 'SIO 2', year: '2026/2027', demo: '2026-10-01', os: 'Debian 13', icon: 'shield',
+        title: 'Pare-feu matériel sous Debian 13', short: 'Pare-feu',
+        client: 'Selenia Software',
+        context: 'Six postes, un serveur de stockage et une imprimante branchés sur la box. Le gérant veut un pare-feu matériel pour améliorer la sécurité globale du LAN : analyse de la demande, proposition de solutions, puis mise en œuvre.',
+        network: [['WAN', '10.10.20.x (x = n° de poste)'], ['Machine', 'PC à 2 cartes réseau (WAN + LAN)'], ['Voisins à bloquer', '172.30.11.0/24 + deux tables']],
+        steps: [
+          'Installer proprement Debian 13 sur un PC doté de deux cartes réseau.',
+          'Configurer la carte WAN en 10.10.20.x.',
+          'Mettre en place un NAT et un service DHCP sur le LAN.',
+          'Politique stricte : tout bloquer par défaut en entrée, n’autoriser en sortie que HTTPS et DNS.',
+          'Autoriser ICMP en entrée et en sortie, puis vérifier la <b>persistance</b> des règles.',
+          'Rediriger le trafic entrant vers une page hébergée sur le LAN (redirection inconditionnelle).',
+          'Bloquer le trafic entrant provenant de 172.30.11.0/24.',
+          'Interdire le trafic sortant vers deux tables voisines.',
+          'N’autoriser l’administration SSH que depuis une IP précise du LAN.',
+          'Bloquer un nom de domaine particulier.',
+          'Scanner l’ensemble des ports TCP depuis le WAN pour vérifier l’efficacité du pare-feu.',
+        ],
+        extra: [],
+        legal: [],
+        tips: [
+          'Routage : <code>net.ipv4.ip_forward=1</code> dans <code>/etc/sysctl.d/</code>.',
+          '<b>nftables</b> (par défaut sur Debian 13) : règles dans <code>/etc/nftables.conf</code>, persistance avec <code>systemctl enable nftables</code>.',
+          'Chaînes en <code>policy drop</code> + <code>ct state established,related accept</code> ; NAT avec <code>masquerade</code>, redirection avec <code>dnat to</code>.',
+          'DNS = UDP <b>et</b> TCP 53 ; HTTPS = TCP 443 (et UDP 443 si tu veux QUIC).',
+          'DHCP et blocage de domaine en un seul outil : <b>dnsmasq</b> (<code>address=/domaine.fr/0.0.0.0</code>).',
+          'Vérification : <code>nmap -p- -Pn 10.10.20.x</code> depuis une machine du WAN.',
+        ],
+        needs: [], courses: ['04', '13', 'CMD'], labs: ['rt-acl', 'rt-nat', 'lnx-nmap', 'lnx-ss'], skills: [],
+      },
+      {
+        id: 'supervision', file: 'Supervision.pdf', level: 'SIO 2', year: '2026/2027', demo: '2026-10-15', os: 'Libre (à justifier)', icon: 'radar',
+        title: 'Supervision réseau avec Zabbix ou Nagios', short: 'Supervision',
+        client: 'Selenia Software',
+        context: 'Déployer une solution de type Zabbix ou Nagios pour surveiller une station Linux, une station Windows et un switch. Le système doit alerter en cas de problème, puis revenir « à la normale » une fois l’action corrective réalisée.',
+        network: [['Hôtes supervisés', 'station Linux, station Windows, switch'], ['Choix technique', 'libre mais justifié']],
+        triggers: [['Machine (client lourd)', 'Arrêt non planifié', 'Critique'], ['Windows', 'Déconnexion du réseau', 'Avertissement'], ['Windows', 'CPU > 50 % pendant 2 min', 'Avertissement'], ['Linux', 'Disque > 80 %', 'Avertissement'], ['Linux', 'Disque > 95 %', 'Critique'], ['Switch', 'Boucle entre 2 ports', 'Critique']],
+        steps: [
+          'Choisir la solution de supervision et justifier ce choix.',
+          'Installer le serveur et ajouter les trois hôtes : station Linux, station Windows, switch.',
+          'Déclencheur critique : arrêt non planifié d’une machine.',
+          'Déclencheur Windows : avertissement en cas de déconnexion du réseau.',
+          'Déclencheur Windows : avertissement si le CPU dépasse 50 % pendant 2 minutes.',
+          'Déclencheurs Linux : avertissement si disque > 80 %, critique si disque > 95 %.',
+          'Déclencheur switch : critique en cas de boucle entre deux ports.',
+          'Envoyer les alertes, puis vérifier le retour « à la normale » après correction.',
+        ],
+        extra: [],
+        legal: [],
+        tips: [
+          'Zabbix : <b>Zabbix agent 2</b> sur Linux et Windows, modèles « Linux by Zabbix agent » et « Windows by Zabbix agent ».',
+          'CPU : <code>avg(/hôte/system.cpu.util,2m)&gt;50</code>. Disque : <code>last(/hôte/vfs.fs.size[/,pused])&gt;80</code>.',
+          'Arrêt / déconnexion : <code>nodata(/hôte/agent.ping,3m)=1</code> ou un ping ICMP.',
+          'Switch en <b>SNMP</b> (<code>snmp-server community …</code>) ; la boucle se voit avec les traps STP ou un port en err-disable par BPDU Guard.',
+          'Tests : <code>fallocate -l 4G /tmp/remplir</code> pour le disque, une boucle PowerShell pour le CPU.',
+        ],
+        needs: [], courses: ['01', '03', 'CMD'], labs: ['sw-portsec', 'sw-base'], skills: ['1.1', '1.4', '1.5', '2.1', '2.2', '3.1', '3.3', '3.4', '3.5'],
+      },
+      {
+        id: 'mail', file: 'Mail.pdf', level: 'SIO 2', year: '2026/2027', demo: '2026-11-26', os: 'Linux', icon: 'lock',
+        title: 'Service mail interne sécurisé', short: 'Mail',
+        client: 'Groupe victime d’un rançongiciel',
+        context: 'En 2019, un groupe lyonnais a été paralysé près d’un mois par un rançongiciel arrivé par mail. Mesure radicale : un service de courrier interne, un serveur mail par site de production, chacun avec son domaine sous <code>ac-monge.fr</code>.',
+        network: [['Internet simulé', '10.10.0.0/16 (salle)'], ['Zone DNS', 'ac-monge.fr'], ['DNS', 'celui du projet précédent']],
+        steps: [
+          'Reprendre le serveur DNS mis en place lors du projet précédent.',
+          'Héberger une page sur une machine du LAN, accessible depuis le WAN (vérification du DNS).',
+          'Mettre en place un service mail : envoi et réception vers et depuis les autres LAN (capture Wireshark dans le CR).',
+          'Forcer le chiffrement SMTP et IMAP avec des certificats SSL/TLS (auto-signés et STARTTLS possibles, nouvelle capture Wireshark).',
+          'Mettre en place des quotas : boîtes aux lettres limitées à 2 Go.',
+          'Filtrer les pièces jointes <code>.jpg</code> : les messages concernés partent en quarantaine.',
+          'Bannir automatiquement (fail2ban…) les IP après 5 échecs d’authentification en moins de 10 minutes.',
+          'Installer un webmail (Roundcube…) sur un serveur web.',
+        ],
+        extra: [],
+        legal: [],
+        tips: [
+          'Pile classique : <b>Postfix</b> (SMTP) + <b>Dovecot</b> (IMAP) ; ajoute un enregistrement <code>MX</code> dans ta zone.',
+          'TLS : <code>smtpd_tls_cert_file</code> / <code>smtpd_tls_key_file</code> côté Postfix, <code>ssl = required</code> côté Dovecot.',
+          'Quotas : plugin <code>quota</code> de Dovecot avec <code>quota_rule = *:storage=2G</code>.',
+          'Quarantaine .jpg : <code>mime_header_checks</code> avec <code>/name=.*\\.jpg/ HOLD</code>, ou Amavis.',
+          'fail2ban : jails <code>postfix-sasl</code> et <code>dovecot</code> avec <code>maxretry = 5</code> et <code>findtime = 10m</code>.',
+          'Tests : <code>openssl s_client -starttls smtp -connect mail:25</code>, <code>swaks</code>, filtre Wireshark <code>smtp || imap</code>.',
+        ],
+        needs: ['dns'], courses: ['01', '13', '14'], labs: ['lnx-dig', 'lnx-ss', 'lnx-tcpdump'], skills: [],
+      },
+    ];
+    const TP_BY = Object.fromEntries(TPS.map(t => [t.id, t]));
+    const tpItems = tp => tp.steps.map((t, i) => ({ k: 's' + i, t, bonus: false })).concat((tp.extra || []).map((t, i) => ({ k: 'x' + i, t, bonus: true })));
+    const tpDemo = tp => new Date(tp.demo + 'T18:00:00');
+    const tpDaysLeft = tp => Math.ceil((tpDemo(tp) - Date.now()) / 864e5);
+    const tpDateTxt = tp => { const d = tpDemo(tp); return `${d.getDate()} ${U.MOIS[d.getMonth()]} ${d.getFullYear()}`; };
+
     const ATK_CAT_ICON = { recon: 'radar', mitm: 'swords', l2: 'switch', dos: 'bug', creds: 'lock', wifi: 'wave', honeypot: 'honey' };
     const devIco = (k, sm) => `<span class="dev-ico k-${k}${sm ? ' sm' : ''}">${ico(DEV_ICON[k])}</span>`;
     const LEVELS = ['', 'Découverte', 'Intermédiaire', 'Avancé'];
@@ -14194,6 +14585,8 @@ Security Violation Count   : 0`;
       allSections() { return COURSES.reduce((a, c) => a + secCount(c), 0); },
       allRead() { return COURSES.reduce((a, c) => a + this.courseRead(c), 0); },
       labsDone() { return LABS.filter(l => Store.P.labs[l.id] && Store.P.labs[l.id].done).length; },
+      tpDone(tp) { return tpItems(tp).filter(x => Store.tpChecked(tp.id, x.k)).length; },
+      tpsDone() { return TPS.filter(t => this.tpDone(t) >= t.steps.length).length; },
       quizOk(cid) { const c = C_BY[cid]; return c.quiz.filter((q, i) => { const r = Store.P.quiz[cid + ':' + i]; return r && r.ok; }).length; },
       quizSeen(cid) { const c = C_BY[cid]; return c.quiz.filter((q, i) => Store.P.quiz[cid + ':' + i]).length; },
       quizTotals() { let ok = 0, seen = 0, all = 0; for (const c of COURSES) { ok += this.quizOk(c.id); seen += this.quizSeen(c.id); all += c.quiz.length; } return { ok, seen, all }; },
@@ -14229,6 +14622,7 @@ Security Violation Count   : 0`;
         for (const l of LABS) I.push({ k: 'Lab', title: l.title, sub: LAB_DEVS[l.dev].name, text: stripTags(l.brief) + ' ' + l.solution.join(' ') + ' ' + l.goals.map(g => g.text).join(' '), href: `#lab-${l.id}`, w: 1.1 });
         for (const a of ATTACKS) I.push({ k: 'Attaque', title: a.title, sub: ATK_CATS[a.cat].label, text: a.short + ' ' + stripTags(a.brief) + ' ' + stripTags(a.how) + ' ' + a.solution.join(' ') + ' ' + stripTags(a.detect), href: `#attaque-${a.id}`, w: 1.1 });
         for (const g of GLOSSARY) I.push({ k: 'Terme', title: g.t, sub: g.cat, text: stripTags(g.def) + ' ' + (g.ex || ''), href: `#glossaire`, w: 1 });
+        for (const t of TPS) I.push({ k: 'TP', title: t.title, sub: t.level, text: stripTags(t.context) + ' ' + tpItems(t).map(x => stripTags(x.t)).join(' ') + ' ' + (t.legal || []).join(' ') + ' ' + stripTags(t.tips.join(' ')) + ' sujet tp prof enseignant ' + t.short, href: `#tp-${t.id}`, w: 1.3 });
         for (const e of EXAMS) I.push({ k: 'Examen', title: `${e.year} — ${e.serie}`, sub: 'Mode examen', text: e.focus + ' examen blanc chrono ' + e.courses.join(' '), href: `#examen-${e.id}`, w: .9 });
         for (const x of I) { x.nt = U.norm(x.title); x.nx = U.norm(x.text); }
         this.idx = I;
@@ -14446,6 +14840,7 @@ Security Violation Count   : 0`;
           <div class="nav-sec">Apprendre</div>
           ${nav.slice(1, 3).map(n => this.navItem(n)).join('')}
           <div class="nav-sec">Pratiquer</div>
+          ${this.navItem(['tp', 'doc', 'Sujets de TP'])}
           ${nav.slice(3, 5).map(n => this.navItem(n)).join('')}
           ${this.navItem(['attaques', 'swords', 'Red / Blue Team'])}
           <div class="nav-sec">Réviser</div>
@@ -14492,6 +14887,7 @@ Security Violation Count   : 0`;
         if (rt) rt.textContent = `${Stats.allRead()}/${Stats.allSections()} sections · ${Stats.labsDone()}/${LABS.length} labs`;
         const fs = Stats.flashState('tout');
         const cc = $('#cnt-cartes'); if (cc) { cc.hidden = !fs.due; cc.textContent = fs.due; cc.className = 'count hot'; }
+        const ct = $('#cnt-tp'); if (ct) { const n = Stats.tpsDone(); ct.hidden = !n; ct.textContent = `${n}/${TPS.length}`; }
         const cl = $('#cnt-labs'); if (cl) { const n = Stats.labsDone(); cl.hidden = !n; cl.textContent = `${n}/${LABS.length}`; }
         Store.setSync(Store.sync.state);
       },
@@ -14552,6 +14948,8 @@ Security Violation Count   : 0`;
         if (key === 'accueil') { navOn('accueil'); this.vHome(main); }
         else if (key === 'cours') { navOn('cours'); const l = Store.P.last; const c = l && C_BY[l.c] ? l.c : COURSES[0].id; location.replace('#cours-' + c + '-' + (l && C_BY[l.c] ? l.s : 0)); return; }
         else if ((m = key.match(/^cours-([A-Za-z0-9]+)(?:-(\d+))?$/)) && C_BY[m[1]]) { navOn('cours'); this.vCourse(main, C_BY[m[1]], m[2] === undefined ? null : +m[2]); }
+        else if (key === 'tp') { navOn('tp'); this.vTps(main); }
+        else if ((m = key.match(/^tp-([a-z0-9-]+)$/)) && TP_BY[m[1]]) { navOn('tp'); this.vTp(main, TP_BY[m[1]]); }
         else if (key === 'labs') { navOn('labs'); this.vLabs(main); }
         else if ((m = key.match(/^lab-([a-z0-9-]+)$/)) && LAB_BY[m[1]]) { navOn('labs'); this.vLab(main, LAB_BY[m[1]]); }
         else if (key === 'terminal' || ((m = key.match(/^terminal-(windows|linux|switch|router|kali)$/)))) { navOn('terminal'); this.vSandbox(main, m ? m[1] : (this.lastSb || 'windows')); }
@@ -14585,6 +14983,7 @@ Security Violation Count   : 0`;
           <div class="hero-cta">
             ${last ? `<a class="btn pri" href="#cours-${last.c}-${last.s}">${ico('book')}Reprendre le cours</a>` : `<a class="btn pri" href="#cours-01-0">${ico('book')}Commencer par les protocoles</a>`}
             <a class="btn" href="#labs">${ico('lab')}Ouvrir un lab</a>
+            <a class="btn" href="#tp">${ico('doc')}Sujets de TP</a>
             <a class="btn" href="#terminal">${ico('term')}Terminal libre</a>
           </div>
           <div class="hero-resume">${last ? `Dernière lecture : <a href="#cours-${last.c}-${last.s}">${esc(C_BY[last.c].short)} · ${esc(secTitle(C_BY[last.c], last.s))}</a>` : 'Astuce : appuie sur <kbd>/</kbd> pour chercher une commande ou une notion.'}</div>
@@ -14597,6 +14996,8 @@ Security Violation Count   : 0`;
         <div class="card stat"><span class="ico">${ico('target')}</span><div><b>${q.seen ? Math.round(q.ok / q.seen * 100) + ' %' : '—'}</b><span>${q.seen ? `de bonnes réponses (${q.seen} questions)` : 'quiz pas encore commencé'}</span></div></div>
         <div class="card stat"><span class="ico">${ico('cards')}</span><div><b>${fs.due}</b><span>${fs.due ? 'cartes à revoir aujourd’hui' : `cartes à revoir · ${fs.fresh} nouvelles`}</span></div></div>
       </section>
+      <div class="section-head tp-home-head"><div><h2 class="h2">Sujets de TP de l’enseignant</h2><p>Les ateliers de professionnalisation à rendre : consignes, étapes à cocher, pistes techniques et sujet PDF.</p></div><a class="btn sm ghost" href="#tp">Les ${TPS.length} sujets ${ico('right')}</a></div>
+      <section class="grid-labs tp-grid">${this.tpHomeList().map(t => this.tpCard(t)).join('')}</section>
       <section class="courses-band">
       <div class="section-head"><div><h2 class="h2">Les cours</h2><p>Chaque fiche est découpée en sections courtes. Lis, marque comme lu, puis entraîne-toi.</p></div><a class="btn sm ghost" href="#cours">Tous les cours ${ico('right')}</a></div>
       <section class="grid-folders bw">${COURSES.map((c, i) => this.courseFolder(c, i)).join('')}</section>
@@ -15395,6 +15796,134 @@ Security Violation Count   : 0`;
       },
 
       /* ============================== GLOSSAIRE ============================== */
+
+      /* ================================ SUJETS DE TP ================================ */
+      tpHomeList() {
+        const now = Date.now();
+        const open = TPS.filter(t => Stats.tpDone(t) < t.steps.length);
+        const soon = open.filter(t => tpDemo(t) >= now).sort((a, b) => tpDemo(a) - tpDemo(b));
+        const started = open.filter(t => Stats.tpDone(t) > 0 && !soon.includes(t));
+        const rest = TPS.filter(t => !soon.includes(t) && !started.includes(t));
+        return soon.concat(started, rest).slice(0, 3);
+      },
+      tpDue(tp) {
+        const d = tpDaysLeft(tp);
+        if (d < 0) return `<span class="tag">Démo le ${esc(tpDateTxt(tp))}</span>`;
+        return `<span class="tag sig">${ico('clock').replace('<svg', '<svg width="12" height="12"')} ${d === 0 ? 'Démo aujourd’hui' : d === 1 ? 'Démo demain' : `Démo dans ${d} j`}</span>`;
+      },
+      tpCard(tp) {
+        const L = TP_LVL[tp.level], n = Stats.tpDone(tp), tot = tp.steps.length, done = n >= tot;
+        return `<a class="card lcard tp-card" href="#tp-${tp.id}" style="--tpc:${L.color}">
+      <div class="lc-top"><span class="dev-ico" style="background:${L.color}">${ico(tp.icon)}</span><span class="tag" style="background:color-mix(in srgb,${L.color} 14%,transparent);color:${L.color}">${esc(tp.level)}</span>${this.tpDue(tp)}</div>
+      <h3>${esc(tp.title)}</h3><p>${esc(stripTags(tp.context))}</p>
+      <div class="bar"><i style="width:${Math.round(Math.min(n, tot) / tot * 100)}%;background:${done ? 'var(--ok)' : L.color}"></i></div>
+      <div class="lc-foot"><span>${esc(tp.os)}</span><span class="st ${done ? 'ok' : n ? 'go' : ''}">${done ? 'Terminé' : n ? `${Math.min(n, tot)}/${tot} étapes` : `${tot} étapes`}</span></div></a>`;
+      },
+      vTps(main) {
+        this.crumbs([['Sujets de TP', '#tp']]);
+        let f = 'all'; try { f = sessionStorage.getItem('sisr-tp-filter') || 'all'; } catch (e) { f = 'all'; }
+        const next = TPS.filter(t => tpDemo(t) >= Date.now()).sort((a, b) => tpDemo(a) - tpDemo(b))[0];
+        const draw = () => {
+          const groups = ['SIO 1', 'SIO 2'].filter(l => f === 'all' || f === l);
+          $('#tpList', main).innerHTML = groups.map(l => `
+        <div class="section-head" style="margin-top:26px"><div><h2 class="h2">${esc(l)} <span class="tp-lvl-sub">· ${esc(TP_LVL[l].label)}</span></h2><p>${TPS.filter(t => t.level === l).length} ateliers, dans l’ordre de l’année.</p></div></div>
+        <section class="grid-labs tp-grid">${TPS.filter(t => t.level === l).map(t => this.tpCard(t)).join('')}</section>`).join('');
+          $$('.chip', $('#tpFilter', main)).forEach(c => c.classList.toggle('on', c.dataset.f === f));
+        };
+        main.innerHTML = `
+      <div class="eyebrow">Pratiquer</div>
+      <h1 class="h1" style="margin-top:10px">Sujets de TP</h1>
+      <p class="lead">Les sujets fournis par l’enseignant pour les ateliers de professionnalisation. Chaque fiche reprend la demande du client, les étapes à cocher au fil du travail, la partie juridique et des pistes techniques. Le PDF original reste la référence.</p>
+      ${next ? `<a class="card tp-next" href="#tp-${next.id}" style="--tpc:${TP_LVL[next.level].color}">
+        <span class="dev-ico" style="background:${TP_LVL[next.level].color}">${ico(next.icon)}</span>
+        <span class="tp-next-txt"><span class="eyebrow">Prochaine démonstration</span><b>${esc(next.title)}</b><span>${esc(next.level)} · démo avant le ${esc(tpDateTxt(next))} · ${Stats.tpDone(next)}/${next.steps.length} étapes faites</span></span>
+        ${this.tpDue(next)}</a>` : ''}
+      <div class="chips" id="tpFilter" style="margin-top:18px">
+        <button class="chip" type="button" data-f="all">Tous <span class="n">${TPS.length}</span></button>
+        <button class="chip" type="button" data-f="SIO 1"><i style="background:${TP_LVL['SIO 1'].color}"></i>SIO 1 <span class="n">${TPS.filter(t => t.level === 'SIO 1').length}</span></button>
+        <button class="chip" type="button" data-f="SIO 2"><i style="background:${TP_LVL['SIO 2'].color}"></i>SIO 2 <span class="n">${TPS.filter(t => t.level === 'SIO 2').length}</span></button>
+      </div>
+      <div id="tpList"></div>`;
+        $$('#tpFilter .chip', main).forEach(c => c.addEventListener('click', () => { f = c.dataset.f; try { sessionStorage.setItem('sisr-tp-filter', f); } catch (e) { /* */ } draw(); }));
+        draw();
+      },
+      vTp(main, tp) {
+        const L = TP_LVL[tp.level];
+        const idx = TPS.indexOf(tp), prev = TPS[idx - 1], next = TPS[idx + 1];
+        const pdf = TP_DIR + encodeURIComponent(tp.file);
+        const items = tpItems(tp);
+        this.crumbs([['Sujets de TP', '#tp'], [tp.short, '']]);
+        const sm = n => ico(n).replace('<svg', '<svg width="16" height="16"');
+        const goal = x => `<div class="goal tp-goal${Store.tpChecked(tp.id, x.k) ? ' done' : ''}" data-k="${x.k}" role="checkbox" tabindex="0" aria-checked="${Store.tpChecked(tp.id, x.k)}"><span class="box">${ico('check')}</span><div><div class="gt">${x.bonus ? '<span class="qtag">BONUS</span>' : ''}${x.t}</div></div></div>`;
+        const linkRow = (href, icon, title, sub, bg) => `<a class="tp-link" href="${href}"><span class="dev-ico sm" style="background:${bg}">${ico(icon)}</span><span><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ''}</span></a>`;
+        const lvlTag = (s) => s === 'Critique' ? 'tp-crit' : 'tp-warn';
+        main.innerHTML = `
+      <div class="tp-page" style="--tpc:${L.color}">
+        <div class="tp-main">
+          <section class="card tp-head">
+            <div class="lab-meta"><span class="dev-ico sm" style="background:${L.color}">${ico(tp.icon)}</span><span class="tag" style="background:color-mix(in srgb,${L.color} 14%,transparent);color:${L.color}">${esc(tp.level)} · ${esc(tp.year)}</span><span class="tag">${esc(tp.os)}</span>${this.tpDue(tp)}</div>
+            <h1>${esc(tp.title)}</h1>
+            <p class="tp-client">${ico('user').replace('<svg', '<svg width="14" height="14"')} Client : <b>${esc(tp.client)}</b></p>
+            <p class="brief">${tp.context}</p>
+            <div class="tp-actions">
+              <a class="btn pri" href="${pdf}" target="_blank" rel="noopener">${ico('doc')}Ouvrir le sujet PDF</a>
+              <a class="btn" href="${pdf}" download>${ico('arrowUR')}Télécharger</a>
+            </div>
+          </section>
+          ${tp.note ? `<div class="card tp-note">${sm('bulb')}<span>${esc(tp.note)}</span></div>` : ''}
+          <section class="card goals" aria-live="polite">
+            <div class="goals-h"><h2>Travail à réaliser</h2><span class="cnt" id="tpcnt"></span></div>
+            <div class="bar" style="margin-bottom:6px"><i id="tpbar" style="background:${L.color}"></i></div>
+            <p class="tp-hint">Coche chaque étape quand elle fonctionne et qu’elle est documentée dans ton compte rendu.</p>
+            <div id="tplist">${items.map(goal).join('')}</div>
+          </section>
+          ${tp.triggers ? `<section class="card tp-sec"><h2>${sm('radar')}Déclencheurs attendus</h2>
+            <div class="tp-table-wrap"><table class="tp-table"><thead><tr><th>Élément</th><th>Condition</th><th>Niveau</th></tr></thead><tbody>${tp.triggers.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td><span class="tag ${lvlTag(r[2])}">${esc(r[2])}</span></td></tr>`).join('')}</tbody></table></div></section>` : ''}
+          ${tp.legal && tp.legal.length ? `<section class="card tp-sec"><h2>${sm('flag')}Partie juridique</h2><ul class="tp-ul">${tp.legal.map(q => `<li>${esc(q)}</li>`).join('')}</ul>${C_BY['14'] ? `<a class="btn sm" href="#cours-14-0" style="margin-top:12px">${ico('book')}Revoir le cours Juridique</a>` : ''}</section>` : ''}
+          <section class="card helpers">
+            <details open><summary><span class="ico">${ico('bulb')}</span>Pistes techniques<span class="tp-sum-note">ajoutées par SISR Lab, pas par l’enseignant</span><span class="chev">${ico('right').replace('<svg', '<svg width="16" height="16"')}</span></summary><div class="inner"><ul class="tp-ul tp-tips">${tp.tips.map(t => `<li>${t}</li>`).join('')}</ul></div></details>
+            <details id="tpPdf"><summary><span class="ico v">${ico('doc')}</span>Aperçu du sujet original<span class="chev">${ico('right').replace('<svg', '<svg width="16" height="16"')}</span></summary><div class="inner"><div class="tp-pdf" id="tpPdfBox"></div><p class="tp-hint" style="margin-top:8px">L’aperçu ne s’affiche pas ? <a href="${pdf}" target="_blank" rel="noopener">Ouvre le PDF dans un nouvel onglet</a>.</p></div></details>
+          </section>
+          <div style="display:flex;justify-content:space-between;gap:8px">
+            ${prev ? `<a class="btn sm ghost" href="#tp-${prev.id}">${ico('left')}${esc(prev.short)}</a>` : '<span></span>'}
+            ${next ? `<a class="btn sm ghost" href="#tp-${next.id}">${esc(next.short)}${ico('right')}</a>` : ''}
+          </div>
+        </div>
+        <aside class="tp-side">
+          <section class="card tp-sec"><h2>${sm('net')}Environnement</h2>
+            <dl class="tp-dl">${tp.network.map(r => `<div><dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd></div>`).join('')}<div><dt>Démonstration</dt><dd>avant le ${esc(tpDateTxt(tp))}</dd></div></dl>
+            <p class="tp-hint" style="margin:10px 0 0">Les dates, adresses et consignes de rendu exactes sont dans le PDF.</p>
+          </section>
+          ${tp.needs.length ? `<section class="card tp-sec"><h2>${sm('retry')}S’appuie sur</h2><div class="tp-links">${tp.needs.map(id => TP_BY[id]).filter(Boolean).map(n => linkRow('#tp-' + n.id, n.icon, n.title, `TP ${n.level}`, TP_LVL[n.level].color)).join('')}</div></section>` : ''}
+          <section class="card tp-sec"><h2>${sm('book')}Réviser sur le site</h2><div class="tp-links">
+            ${tp.courses.map(id => C_BY[id]).filter(Boolean).map(c => linkRow(`#cours-${c.id}-0`, 'book', c.short, 'Cours', 'var(--accent)')).join('')}
+            ${tp.labs.map(id => LAB_BY[id]).filter(Boolean).map(l => linkRow(`#lab-${l.id}`, 'lab', l.title, 'Lab ' + LAB_DEVS[l.dev].name, '#3c5566')).join('')}
+          </div></section>
+          ${tp.skills.length ? `<section class="card tp-sec"><h2>${sm('target')}Activités du référentiel</h2><div class="tp-skills">${tp.skills.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div></section>` : ''}
+        </aside>
+      </div>`;
+        const update = () => {
+          const n = items.filter(x => Store.tpChecked(tp.id, x.k)).length;
+          $('#tpcnt').textContent = `${n}/${items.length}`;
+          $('#tpbar').style.width = Math.round(n / items.length * 100) + '%';
+        };
+        $$('.tp-goal', main).forEach(g => {
+          const flip = () => {
+            const on = !g.classList.contains('done');
+            g.classList.toggle('done', on); g.setAttribute('aria-checked', on);
+            g.classList.remove('flash'); void g.offsetWidth; if (on) g.classList.add('flash');
+            Store.tpToggle(tp.id, g.dataset.k, on); update();
+            if (on && Stats.tpDone(tp) === items.length) toast('TP terminé : pense à finaliser ton compte rendu !');
+          };
+          g.addEventListener('click', flip);
+          g.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); } });
+        });
+        $('#tpPdf').addEventListener('toggle', e => {
+          const box = $('#tpPdfBox');
+          if (e.target.open && !box.firstChild) box.innerHTML = `<iframe src="${pdf}#view=FitH" title="Sujet ${esc(tp.short)} (PDF)" loading="lazy"></iframe>`;
+        });
+        update();
+      },
       vGlossaire(main) {
         this.crumbs([['Glossaire', '#glossaire']]);
         const card = g => `<article class="gl-card" data-cat="${esc(g.cat)}" data-s="${esc(U.norm(g.t + ' ' + stripTags(g.def) + ' ' + (g.ex || '')))}">
@@ -15444,6 +15973,7 @@ Security Violation Count   : 0`;
       <h1 class="h1" style="margin-top:10px">Sujets officiels &amp; mode examen</h1>
       <p class="lead">Télécharge les sujets et documents officiels des sessions passées, puis mets-toi en conditions avec un <b>examen blanc chronométré</b> : choisis la session (ou un entraînement ciblé), compose, puis corrige-toi.</p>
 
+      <a class="card tp-next" href="#tp" style="--tpc:var(--accent);margin-top:18px"><span class="dev-ico" style="background:var(--accent)">${ico('doc')}</span><span class="tp-next-txt"><span class="eyebrow">Ateliers de professionnalisation</span><b>Les sujets de TP de l’enseignant</b><span>${TPS.length} sujets avec étapes à cocher, pistes techniques et PDF</span></span><span class="ex-dl-go">${ico('right')}</span></a>
       <div class="section-head" style="margin-top:14px"><div><h2 class="h2">Mode examen — compose ton épreuve</h2><p>Un chrono, un tirage de questions sur le programme, un score et une correction détaillée à la fin.</p></div></div>
       <section class="grid-labs">${EXAMS.map(examCard).join('')}</section>
 
