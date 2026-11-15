@@ -6609,6 +6609,77 @@
       .dash-cta .btn { flex: 1; }
     }
 
+    /* ---------- carrousel « stories » des sujets de TP ---------- */
+    .st-nav { display: flex; align-items: center; gap: 6px; }
+    .st-btn {
+      display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--line-2); background: var(--hairline); color: var(--ink); cursor: pointer;
+      transition: background .2s, border-color .2s, opacity .2s;
+    }
+    .st-btn svg { width: 16px; height: 16px; }
+    .st-btn:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); border-color: color-mix(in srgb, var(--ink) 25%, transparent); }
+    .st-btn:disabled { opacity: .35; cursor: default; }
+    .stories { --fl: 56px; --fr: 56px; position: relative; margin: 0 -6px; }
+    .stories.at-start { --fl: 0px; }
+    .stories.at-end { --fr: 0px; }
+    .st-track {
+      display: flex; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory; scroll-padding-inline: 6px; padding: 8px 6px 16px;
+      scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-select: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+    }
+    .st-track::-webkit-scrollbar { display: none; }
+    .st-track.drag { cursor: grabbing; scroll-snap-type: none; }
+    .st-track.drag .story { pointer-events: none; }
+    .story {
+      --sc: var(--c-indigo);
+      position: relative; flex: 0 0 216px; aspect-ratio: 3 / 4; border-radius: 18px; overflow: hidden; isolation: isolate;
+      scroll-snap-align: start; color: #fff; background: color-mix(in srgb, var(--sc) 12%, #06070c);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .story:hover, .story:focus-visible {
+      text-decoration: none; transform: scale(1.02);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sc) 55%, transparent), 0 20px 44px -22px color-mix(in srgb, var(--sc) 70%, transparent);
+    }
+    .story:focus-visible { outline: 2px solid var(--c-indigo); outline-offset: 3px; }
+    /* la couverture « joue » au survol, comme la vidéo du composant d'origine */
+    .st-media {
+      position: absolute; inset: -4%; z-index: -1; background-size: cover; background-position: center top;
+      transform: scale(1); transition: transform 4s cubic-bezier(.2, .7, .2, 1);
+    }
+    .story:hover .st-media, .story:focus-visible .st-media { transform: scale(1.07) translateY(1.5%); }
+    .st-ov { position: absolute; left: 0; right: 0; z-index: 0; pointer-events: none; }
+    .st-top { top: 0; height: 24%; background: linear-gradient(180deg, rgba(4, 5, 9, .45), transparent); }
+    .st-bot { bottom: 0; height: 52%; background: linear-gradient(0deg, rgba(4, 5, 9, .97), rgba(4, 5, 9, .85) 50%, transparent); }
+    .st-title { position: absolute; top: 0; left: 0; right: 0; z-index: 1; display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 12px; }
+    .st-lvl {
+      font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: .04em; padding: 2px 8px; border-radius: 7px;
+      background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .18); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    }
+    .st-state { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 500; color: rgba(255, 255, 255, .86); font-variant-numeric: tabular-nums; background: rgba(6, 7, 12, .55); border: 1px solid rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    .st-state svg { width: 13px; height: 13px; }
+    .story.done .st-state { color: #6ee7b7; }
+    .st-foot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; flex-direction: column; gap: 10px; padding: 12px 13px 16px; }
+    .st-h { font-size: 15px; font-weight: 600; line-height: 1.28; letter-spacing: -.01em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .st-author { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .st-av {
+      flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+      border: 1px solid rgba(255, 255, 255, .22); background: color-mix(in srgb, var(--sc) 40%, rgba(255, 255, 255, .06));
+    }
+    .st-av svg { width: 13px; height: 13px; }
+    .st-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; font-weight: 500; color: rgba(255, 255, 255, .82); }
+    .st-bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; height: 3px; background: rgba(255, 255, 255, .1); }
+    .st-bar i { display: block; height: 100%; background: var(--sc); box-shadow: 0 0 10px var(--sc); }
+    .story.done .st-bar i { background: #34d399; box-shadow: 0 0 10px #34d399; }
+    @media (prefers-reduced-motion: reduce) { .story, .st-media { transition: none; } .story:hover .st-media { transform: none; } }
+    @media (max-width: 700px) {
+      .story { flex-basis: 176px; border-radius: 16px; }
+      .st-h { font-size: 14px; }
+      .st-nav .st-btn { display: none; }
+      .stories { --fl: 0px; --fr: 32px; }
+    }
   </style>
 </head>
 
@@ -14989,6 +15060,157 @@ Security Violation Count   : 0`;
       return 'data:image/svg+xml,' + encodeURIComponent(svg);
     }
 
+    /* ===================== illustrations des sujets de TP ===================== */
+    // Une scène dessinée par sujet (300 × 400, format des cartes du carrousel).
+    // Le sujet occupe le haut de l'image : le bas est couvert par le titre.
+    const TP_ART = (() => {
+      const P = "fill='url(#pn)' stroke='#2a3146' stroke-width='1.5'";
+      const LN = '#3a4360', OK = '#34d399', KO = '#fb7185', WARN = '#fbbf24', INK = '#e2e8f0', DIM = '#7c879c';
+      const T = (x, y, s, o) => { o = o || {}; return `<text x='${x}' y='${y}' font-family='ui-monospace,Menlo,Consolas,monospace' font-size='${o.size || 10}' font-weight='${o.weight || 500}' fill='${o.fill || '#cbd5e1'}' text-anchor='${o.anchor || 'middle'}' stroke='none'>${s}</text>`; };
+      const halo = s => `<g filter='url(#gl)' opacity='.9'>${s}</g>${s}`;
+      const dash = (d, c) => `<path d='${d}' stroke='${c}' stroke-width='1.4' stroke-dasharray='3 4' opacity='.85'/>`;
+      return {
+        // partage de fichiers : nuage, dossier synchronisé, appareils
+        nextcloud: c => {
+          let s = halo(`<path d='M95 172 H205 A32 32 0 0 0 208 108 A46 46 0 0 0 120 94 A34 34 0 0 0 95 172 Z' fill='url(#pn)' stroke='${c}' stroke-width='2.2'/>`);
+          s += `<path d='M127 122 h15 l6 7 h25 a4 4 0 0 1 4 4 v22 a4 4 0 0 1 -4 4 h-46 a4 4 0 0 1 -4 -4 v-29 a4 4 0 0 1 4 -4 z' stroke='${INK}' stroke-width='1.8'/>`;
+          s += `<path d='M150 139 v13 M144 146 l6 6 6 -6' stroke='${c}' stroke-width='1.8'/>`;
+          s += [[58, 74, -9], [240, 66, 8]].map(([x, y, r]) => `<g transform='rotate(${r} ${x} ${y})'><rect x='${x - 15}' y='${y - 19}' width='30' height='38' rx='4' ${P}/><path d='M${x - 8} ${y - 9} h16 M${x - 8} ${y - 2} h16 M${x - 8} ${y + 5} h10' stroke='${DIM}' stroke-width='1.4'/></g>`).join('');
+          s += dash('M74 92 C88 100 96 112 102 126', c) + dash('M226 88 C214 98 208 104 204 112', c);
+          s += `<rect x='40' y='192' width='56' height='34' rx='4' ${P}/><path d='M32 230 h72' stroke='${LN}' stroke-width='3'/>`;
+          s += `<rect x='214' y='186' width='30' height='48' rx='6' ${P}/><path d='M224 226 h10' stroke='${DIM}' stroke-width='1.5'/>`;
+          s += dash('M68 192 C70 182 90 176 104 172', c) + dash('M229 186 C228 178 212 174 198 172', c);
+          return s;
+        },
+        // annuaire LDAP : arbre dc / ou / utilisateurs, accès RADIUS
+        ldap: c => {
+          const ous = [[62, 'ou=biblio'], [150, 'ou=agents'], [238, 'ou=postes']];
+          let s = ous.map(([x]) => `<path d='M150 78 V94 H${x} V110' stroke='${LN}' stroke-width='1.5'/>`).join('');
+          s += halo(`<rect x='104' y='50' width='92' height='28' rx='8' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`) + T(150, 68, 'dc=agglo', { fill: INK, size: 11 });
+          s += ous.map(([x, l]) => `<rect x='${x - 39}' y='110' width='78' height='24' rx='7' ${P}/>` + T(x, 126, l, { size: 9.5 })).join('');
+          s += ous.map(([x]) => [-18, 18].map(d => `<path d='M${x} 134 V144 H${x + d} V150' stroke='${LN}' stroke-width='1.3'/><circle cx='${x + d}' cy='158' r='4.5' stroke='${INK}' stroke-width='1.5'/><path d='M${x + d - 8} 174 a8 8 0 0 1 16 0' stroke='${INK}' stroke-width='1.5'/>`).join('')).join('');
+          s += halo(`<rect x='108' y='190' width='84' height='26' rx='13' fill='url(#pn)' stroke='${c}' stroke-width='1.6'/>`);
+          s += `<path d='M120 203 a5 5 0 1 0 0.1 0 M125 203 h9 M131 203 v4' stroke='${WARN}' stroke-width='1.5'/>` + T(160, 207, 'RADIUS', { fill: c, size: 10 });
+          return s;
+        },
+        // centre d'assistance : ticket, priorités, inventaire du parc
+        glpi: c => {
+          let s = `<g transform='rotate(-7 150 128)' opacity='.5'><rect x='88' y='66' width='128' height='120' rx='12' ${P}/></g>`;
+          s += halo(`<rect x='84' y='60' width='134' height='130' rx='12' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`);
+          s += T(98, 82, 'TICKET #4127', { fill: INK, size: 10.5, anchor: 'start' });
+          s += `<rect x='98' y='92' width='60' height='18' rx='9' fill='${c}' fill-opacity='.16' stroke='${c}' stroke-width='1'/>` + T(128, 105, 'en cours', { fill: c, size: 9.5 });
+          s += [KO, WARN, DIM].map((col, i) => `<circle cx='${178 + i * 12}' cy='101' r='3.5' fill='${col}' stroke='none'/>`).join('');
+          s += `<path d='M98 128 h104 M98 142 h86 M98 156 h96' stroke='${LN}' stroke-width='3'/><path d='M98 174 h34' stroke='${OK}' stroke-width='3'/>`;
+          s += [72, 112, 152].map(y => `<rect x='26' y='${y}' width='38' height='25' rx='4' ${P}/><path d='M39 ${y + 31} h12 M45 ${y + 25} v6' stroke='${LN}' stroke-width='1.5'/>`).join('');
+          s += dash('M64 84 H84', c) + dash('M64 124 H84', c) + dash('M64 164 H84', c);
+          s += `<path d='M238 106 v-8 a14 14 0 0 1 28 0 v8' stroke='${INK}' stroke-width='1.8'/><rect x='233' y='104' width='9' height='15' rx='3' stroke='${INK}' stroke-width='1.6'/><rect x='262' y='104' width='9' height='15' rx='3' stroke='${INK}' stroke-width='1.6'/><path d='M267 119 q0 11 -13 11' stroke='${INK}' stroke-width='1.6'/>`;
+          return s;
+        },
+        // NAS : baie à quatre disques, miroir RAID
+        nas: c => {
+          let s = halo(`<rect x='86' y='50' width='128' height='152' rx='16' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`);
+          for (let i = 0; i < 4; i++) {
+            const y = 68 + i * 28;
+            s += `<rect x='100' y='${y}' width='100' height='20' rx='5' fill='#0a0d16' stroke='#2a3146' stroke-width='1.3'/><path d='M111 ${y + 10} h46' stroke='#2a3146' stroke-width='3'/>`;
+            s += halo(`<circle cx='188' cy='${y + 10}' r='3' fill='${i === 3 ? WARN : OK}' stroke='none'/>`);
+          }
+          s += T(150, 192, 'RAID 1 · 4 disques', { fill: DIM, size: 9 });
+          s += `<path d='M86 78 C58 78 58 106 86 106' stroke='${c}' stroke-width='1.6' stroke-dasharray='3 4'/><path d='M79 100 l7 6 -7 6' stroke='${c}' stroke-width='1.6'/>`;
+          s += `<path d='M214 134 C242 134 242 162 214 162' stroke='${c}' stroke-width='1.6' stroke-dasharray='3 4'/><path d='M221 128 l-7 6 7 6' stroke='${c}' stroke-width='1.6'/>`;
+          s += `<path d='M150 202 v18 M112 220 h76' stroke='${LN}' stroke-width='1.6'/>`;
+          return s;
+        },
+        // sauvegarde : boucle de restauration autour d'un disque, points de sauvegarde
+        restauration: c => {
+          let s = halo(`<path d='M150 60 A66 66 0 1 1 87 108' stroke='${c}' stroke-width='3'/><path d='M78 118 L87 106 L98 115' stroke='${c}' stroke-width='3'/>`);
+          s += `<rect x='114' y='102' width='72' height='48' rx='9' ${P}/><path d='M126 116 h32 M126 126 h22' stroke='${LN}' stroke-width='3'/><circle cx='172' cy='138' r='3.5' fill='${OK}' stroke='none'/>`;
+          s += `<path d='M58 216 H242' stroke='#2a3146' stroke-width='1.5'/>`;
+          s += ['J-3', 'J-2', 'J-1', 'J'].map((l, i) => { const x = 70 + i * 53; return `<circle cx='${x}' cy='216' r='${i === 3 ? 5 : 4}' fill='${i === 3 ? c : '#0b0e18'}' stroke='${c}' stroke-width='1.6'/>` + T(x, 236, l, { fill: DIM, size: 9 }); }).join('');
+          return s;
+        },
+        // WiFi public : borne, ondes, portail captif sur un téléphone
+        wifi: c => {
+          let s = [24, 42, 60].map(r => { const k = r * .7071; return `<path d='M${(76 - k).toFixed(1)} ${(146 - k).toFixed(1)} A${r} ${r} 0 0 1 ${(76 + k).toFixed(1)} ${(146 - k).toFixed(1)}' stroke='${c}' stroke-width='2.4' opacity='${(1.15 - r / 70).toFixed(2)}'/>`; }).join('');
+          s = halo(s) + `<circle cx='76' cy='146' r='4' fill='${c}' stroke='none'/>`;
+          s += `<rect x='42' y='164' width='68' height='20' rx='8' ${P}/><circle cx='56' cy='174' r='2.5' fill='${OK}' stroke='none'/><circle cx='66' cy='174' r='2.5' fill='${OK}' stroke='none'/>`;
+          s += halo(`<rect x='160' y='46' width='86' height='162' rx='14' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`);
+          s += `<path d='M193 56 h20' stroke='${LN}' stroke-width='3'/>` + T(203, 84, 'Wi-Fi invité', { fill: INK, size: 10 });
+          s += `<rect x='172' y='96' width='62' height='15' rx='4' stroke='${LN}' stroke-width='1.3'/><rect x='172' y='117' width='62' height='15' rx='4' stroke='${LN}' stroke-width='1.3'/>`;
+          s += `<rect x='172' y='140' width='8' height='8' rx='2' stroke='${c}' stroke-width='1.3'/><path d='M174 144 l2 2 3 -4' stroke='${c}' stroke-width='1.2'/><path d='M185 144 h40' stroke='${DIM}' stroke-width='1.6'/>`;
+          s += `<rect x='172' y='158' width='62' height='18' rx='6' fill='${c}' stroke='none'/>` + T(203, 171, 'Connexion', { fill: '#06070c', size: 9, weight: 700 });
+          s += dash('M124 118 C138 112 146 112 158 114', c);
+          return s;
+        },
+        // Active Directory : contrôleur de domaine, GPO, postes, SSO
+        ad: c => {
+          let s = `<path d='M176 72 H202 M176 128 H202' stroke='${c}' stroke-width='1.4' stroke-dasharray='3 4'/><path d='M92 104 H124' stroke='${c}' stroke-width='1.4' stroke-dasharray='3 4'/>`;
+          s += halo(`<rect x='124' y='56' width='52' height='114' rx='9' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`);
+          s += `<path d='M136 74 h28 M136 86 h28 M136 98 h28' stroke='${LN}' stroke-width='3'/><circle cx='150' cy='150' r='4' fill='${c}' stroke='none'/>` + T(150, 188, 'DC01', { fill: INK, size: 10 });
+          s += `<rect x='28' y='64' width='64' height='80' rx='8' ${P}/>` + T(60, 83, 'GPO', { fill: c, size: 10, weight: 700 });
+          s += [0, 1, 2].map(i => `<path d='M38 ${99 + i * 14} l3 3 6 -6' stroke='${OK}' stroke-width='1.6'/><path d='M53 ${97 + i * 14} h29' stroke='${LN}' stroke-width='2.5'/>`).join('');
+          s += [72, 128].map(y => `<rect x='202' y='${y - 17}' width='52' height='34' rx='5' ${P}/><path d='M220 ${y + 23} h16 M228 ${y + 17} v6' stroke='${LN}' stroke-width='1.6'/>`).join('');
+          s += halo(`<circle cx='212' cy='190' r='8' stroke='${WARN}' stroke-width='1.8'/><path d='M220 190 h24 M236 190 v6 M242 190 v5' stroke='${WARN}' stroke-width='1.8'/>`) + T(230, 214, 'SSO', { fill: DIM, size: 9 });
+          return s;
+        },
+        // DNS : arborescence des domaines et réponse à la requête
+        dns: c => {
+          const node = (x, y, l, on) => { const w = Math.max(30, l.length * 6.6 + 20); return `<rect x='${(x - w / 2).toFixed(1)}' y='${y - 12}' width='${w.toFixed(1)}' height='24' rx='12' fill='url(#pn)' stroke='${on ? c : '#2a3146'}' stroke-width='${on ? 1.8 : 1.3}'/>` + T(x, y + 3.5, l, { fill: on ? INK : DIM, size: 10 }); };
+          let s = `<path d='M150 68 L82 94 M150 68 V94 M150 68 L218 94 M150 118 V138 M150 162 V180' stroke='${LN}' stroke-width='1.4'/>`;
+          s += halo(node(150, 56, '.', true)) + node(82, 106, 'com.', false) + node(150, 106, 'fr.', true) + node(218, 106, 'org.', false) + node(150, 150, 'ac-monge.fr.', true);
+          s += halo(`<rect x='82' y='180' width='136' height='26' rx='8' fill='url(#pn)' stroke='${c}' stroke-width='1.8'/>`) + T(150, 197, 'www → 172.30.x.10', { fill: c, size: 9.5 });
+          s += T(40, 56, '$ dig', { fill: DIM, size: 9.5, anchor: 'start' });
+          return s;
+        },
+        // pare-feu : mur, bouclier, paquets filtrés
+        parefeu: c => {
+          let s = `<path d='M24 128 H226' stroke='${OK}' stroke-width='1.8'/><path d='M218 122 l8 6 -8 6' stroke='${OK}' stroke-width='1.8'/><rect x='46' y='124' width='8' height='8' rx='2' fill='${OK}' stroke='none'/>`;
+          s += [70, 186].map(y => `<path d='M24 ${y} H112' stroke='${KO}' stroke-width='1.6' stroke-dasharray='4 4'/><rect x='52' y='${y - 4}' width='8' height='8' rx='2' fill='${KO}' stroke='none'/><path d='M112 ${y - 6} l10 12 M122 ${y - 6} l-10 12' stroke='${KO}' stroke-width='2'/>`).join('');
+          for (let r = 0; r < 8; r++) {
+            const y = 46 + r * 21;
+            const row = r % 2 ? [[128, 9], [139, 22], [163, 9]] : [[128, 20], [150, 22]];
+            s += row.map(([x, w]) => `<rect x='${x}' y='${y}' width='${w}' height='18' rx='2.5' fill='#121726' stroke='#2a3146' stroke-width='1.1'/>`).join('');
+          }
+          s += halo(`<path d='M150 98 L176 107 V127 C176 144 164 154 150 160 C136 154 124 144 124 127 V107 Z' fill='url(#pn)' stroke='${c}' stroke-width='2.2'/>`);
+          s += `<path d='M140 128 l7 7 13 -14' stroke='${c}' stroke-width='2.4'/>`;
+          s += `<rect x='230' y='106' width='42' height='44' rx='7' ${P}/><path d='M240 120 h22 M240 130 h22 M240 140 h14' stroke='${LN}' stroke-width='2.5'/>`;
+          return s;
+        },
+        // supervision : écran de métriques, seuil, alerte
+        supervision: c => {
+          const pts = [[50, 150], [70, 142], [90, 146], [110, 128], [130, 134], [150, 108], [166, 86], [182, 118], [202, 124], [222, 112]];
+          const d = 'M' + pts.map(p => p.join(' ')).join(' L');
+          let s = halo(`<rect x='36' y='54' width='200' height='130' rx='12' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`);
+          s += `<path d='M136 184 v16 M112 204 h48' stroke='${LN}' stroke-width='3'/>`;
+          s += [OK, OK, WARN, KO].map((col, i) => `<circle cx='${54 + i * 12}' cy='72' r='3.5' fill='${col}' stroke='none'/>`).join('') + T(220, 76, 'zabbix', { fill: DIM, size: 9, anchor: 'end' });
+          s += `<path d='M50 96 H222' stroke='${KO}' stroke-width='1.2' stroke-dasharray='4 4' opacity='.8'/>`;
+          s += `<path d='${d} L222 172 L50 172 Z' fill='${c}' fill-opacity='.12' stroke='none'/>` + halo(`<path d='${d}' stroke='${c}' stroke-width='2.2'/>`);
+          s += halo(`<circle cx='166' cy='86' r='4.5' fill='${KO}' stroke='none'/>`);
+          s += halo(`<g transform='translate(-4 64)'><path d='M262 44 a11 11 0 0 0 -11 11 v9 l-5 7 h32 l-5 -7 v-9 a11 11 0 0 0 -11 -11 z M257 75 a5 5 0 0 0 10 0' stroke='${WARN}' stroke-width='1.7'/></g>`);
+          return s;
+        },
+        // messagerie : enveloppe, cadenas, tunnel TLS
+        mail: c => {
+          let s = `<path d='M24 128 H74 M226 128 H276' stroke='${c}' stroke-width='1.4' stroke-dasharray='3 5'/>` + T(48, 118, 'TLS', { fill: DIM, size: 9 }) + T(252, 118, 'TLS', { fill: DIM, size: 9 });
+          s += halo(`<rect x='76' y='78' width='148' height='100' rx='12' fill='url(#pn)' stroke='${c}' stroke-width='2'/>`);
+          s += `<path d='M82 86 L150 134 L218 86' stroke='${c}' stroke-width='2'/><path d='M84 172 L132 126 M216 172 L168 126' stroke='${LN}' stroke-width='1.5'/>`;
+          s += halo(`<rect x='190' y='154' width='40' height='32' rx='7' fill='#0b0e18' stroke='${WARN}' stroke-width='2'/><path d='M198 154 v-8 a12 12 0 0 1 24 0 v8' stroke='${WARN}' stroke-width='2'/><circle cx='210' cy='168' r='3' fill='${WARN}' stroke='none'/><path d='M210 171 v6' stroke='${WARN}' stroke-width='2'/>`);
+          s += T(150, 62, 'smtp · imaps', { fill: DIM, size: 9.5 });
+          return s;
+        },
+      };
+    })();
+    function tpCover(tp, c) {
+      const art = TP_ART[tp.id] ? TP_ART[tp.id](c) : '';
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400' preserveAspectRatio='xMidYMid slice'>`
+        + `<defs><radialGradient id='bg' cx='50%' cy='30%' r='72%'><stop offset='0' stop-color='${c}' stop-opacity='.34'/><stop offset='.55' stop-color='${c}' stop-opacity='.07'/><stop offset='1' stop-color='${c}' stop-opacity='0'/></radialGradient>`
+        + `<pattern id='dots' width='16' height='16' patternUnits='userSpaceOnUse'><circle cx='1' cy='1' r='1' fill='#ffffff' fill-opacity='.07'/></pattern>`
+        + `<linearGradient id='pn' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#171c2c'/><stop offset='1' stop-color='#0b0e18'/></linearGradient>`
+        + `<filter id='gl' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='4'/></filter></defs>`
+        + `<rect width='300' height='400' fill='#06070c'/><rect width='300' height='400' fill='url(#bg)'/><rect width='300' height='400' fill='url(#dots)'/>`
+        + `<g fill='none' stroke-linecap='round' stroke-linejoin='round'>${art}</g></svg>`;
+      return 'data:image/svg+xml,' + encodeURIComponent(svg);
+    }
+
     /* dossiers de l'accueil : palettes douces [clair, moyen, profond] */
     const FOLDER_TONES = [
       ['#eadcc6', '#a9bcae', '#5d7c6e'], // sable / sauge
@@ -15592,8 +15814,6 @@ Security Violation Count   : 0`;
         <div>
           <div class="eyebrow">Tableau de bord · BTS SIO SISR</div>
           <h1 class="dash-title">${first ? `Bonjour ${esc(first)}.` : 'Ta progression, en un coup d’œil.'}</h1>
-          <p class="dash-sub">${COURSES.length} cours, ${LABS.length} labs dans des terminaux simulés, ${TPS.length} sujets de TP, des quiz et des flashcards à répétition espacée.
-            ${last ? `Dernière lecture : <a href="#cours-${last.c}-${last.s}">${esc(C_BY[last.c].short)} · ${esc(secTitle(C_BY[last.c], last.s))}</a>.` : 'Appuie sur <kbd>/</kbd> pour chercher une commande ou une notion.'}</p>
         </div>
         <div class="dash-cta">
           ${last ? `<a class="btn pri" href="#cours-${last.c}-${last.s}">${ico('book')}Reprendre le cours</a>` : `<a class="btn pri" href="#cours-01-0">${ico('book')}Commencer par les protocoles</a>`}
@@ -15610,8 +15830,11 @@ Security Violation Count   : 0`;
         ${this.dCourses()}
       </section>
 
-      <div class="section-head"><div><h2 class="h2">Sujets de TP de l’enseignant</h2><p>Les ateliers de professionnalisation à rendre : consignes, étapes à cocher, pistes techniques et sujet PDF.</p></div><a class="btn sm ghost" href="#tp">Les ${TPS.length} sujets ${ico('right')}</a></div>
-      <section class="grid-labs tp-grid">${this.tpHomeList().map(t => this.tpCard(t)).join('')}</section>
+      <div class="section-head"><div><h2 class="h2">Sujets de TP de l’enseignant</h2><p>Les ateliers de professionnalisation à rendre : consignes, étapes à cocher, pistes techniques et sujet PDF.</p></div>
+        <div class="st-nav"><a class="btn sm ghost" href="#tp">Les ${TPS.length} sujets</a><button class="st-btn" type="button" id="stPrev" aria-label="Sujets précédents">${ico('left')}</button><button class="st-btn" type="button" id="stNext" aria-label="Sujets suivants">${ico('right')}</button></div></div>
+      <section class="stories at-start" id="tpStories" aria-label="Sujets de TP, à faire défiler horizontalement">
+        <div class="st-track" role="list">${this.tpStoryOrder().map(t => this.tpStory(t)).join('')}</div>
+      </section>
 
       <div class="section-head"><div><h2 class="h2">Passer à la pratique</h2><p>Les labs se valident tout seuls : tape les commandes, les objectifs se cochent.</p></div><a class="btn sm ghost" href="#labs">Les ${LABS.length} labs ${ico('right')}</a></div>
       <section class="home-two">
@@ -15626,6 +15849,70 @@ Security Violation Count   : 0`;
           </div></div>
       </section>`;
         this.bindDash(main, d14);
+        this.bindStories(main);
+      },
+
+      /* ---------- carrousel des sujets de TP (format « stories ») ---------- */
+      // en cours d'abord, puis à faire dans l'ordre de l'année, puis terminés
+      tpStoryOrder() {
+        const st = t => { const n = Stats.tpDone(t); return n >= t.steps.length ? 2 : n > 0 ? 0 : 1; };
+        return TPS.map((t, i) => [t, st(t), i]).sort((a, b) => a[1] - b[1] || a[2] - b[2]).map(x => x[0]);
+      },
+      tpStory(tp) {
+        const tot = tp.steps.length, n = Math.min(Stats.tpDone(tp), tot), done = n >= tot;
+        // une nuance par sujet : tons froids pour SIO 1, violets et roses pour SIO 2
+        const tones = tp.level === 'SIO 2' ? ['#8b5cf6', '#d946ef', '#6366f1', '#f43f5e'] : ['#06b6d4', '#10b981', '#3b82f6', '#14b8a6', '#0ea5e9', '#22c55e', '#2dd4bf'];
+        const tone = tones[TPS.filter(t => t.level === tp.level).indexOf(tp) % tones.length];
+        return `<a class="story${done ? ' done' : ''}" role="listitem" href="#tp-${tp.id}" draggable="false" style="--sc:${tone}" aria-label="${esc(tp.title)} · ${esc(tp.level)} · ${done ? 'terminé' : `${n} sur ${tot} étapes`}">
+        <span class="st-media" style="background-image:url(&quot;${tpCover(tp, tone)}&quot;)" aria-hidden="true"></span>
+        <span class="st-ov st-top" aria-hidden="true"></span><span class="st-ov st-bot" aria-hidden="true"></span>
+        <span class="st-title"><span class="st-state">${done ? `${ico('check')}Terminé` : n ? `${n}/${tot} étapes` : `${tot} étapes`}</span></span>
+        <span class="st-foot">
+          <b class="st-h">${esc(tp.title)}</b>
+          <span class="st-author"><span class="st-av">${ico(tp.icon)}</span><span class="st-name">${esc(tp.short)} · ${esc(tp.os)}</span></span>
+        </span>
+        <span class="st-bar" aria-hidden="true"><i style="width:${Math.round(n / tot * 100)}%"></i></span>
+      </a>`;
+      },
+      bindStories(main) {
+        const root = $('#tpStories', main); if (!root) return;
+        const tr = $('.st-track', root), prev = $('#stPrev', main), next = $('#stNext', main);
+        const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const upd = () => {
+          const max = tr.scrollWidth - tr.clientWidth - 2;
+          const a = tr.scrollLeft <= 2, b = tr.scrollLeft >= max;
+          root.classList.toggle('at-start', a); root.classList.toggle('at-end', b);
+          if (prev) prev.disabled = a;
+          if (next) next.disabled = b;
+        };
+        const page = () => { const c = $('.story', tr); const w = c ? c.getBoundingClientRect().width + 14 : 230; return w * Math.max(1, Math.floor(tr.clientWidth / w) - 1); };
+        if (prev) prev.addEventListener('click', () => tr.scrollBy({ left: -page(), behavior: reduce ? 'auto' : 'smooth' }));
+        if (next) next.addEventListener('click', () => tr.scrollBy({ left: page(), behavior: reduce ? 'auto' : 'smooth' }));
+        tr.addEventListener('scroll', upd, { passive: true });
+        // glisser à la souris (le tactile défile nativement)
+        let sx = 0, sl = 0, down = false, moved = false;
+        const move = e => {
+          if (!down) return;
+          const dx = e.clientX - sx;
+          if (!moved && Math.abs(dx) > 5) { moved = true; tr.classList.add('drag'); }
+          if (moved) tr.scrollLeft = sl - dx;
+        };
+        const up = () => {
+          if (!down) return;
+          down = false;
+          window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up);
+          tr.classList.remove('drag');
+        };
+        tr.addEventListener('pointerdown', e => {
+          if (e.pointerType !== 'mouse' || e.button !== 0) return;
+          down = true; moved = false; sx = e.clientX; sl = tr.scrollLeft;
+          window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+        });
+        tr.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+        let ro = null;
+        if (typeof ResizeObserver !== 'undefined') { ro = new ResizeObserver(upd); ro.observe(tr); }
+        upd();
+        this.cleanups.push(() => { up(); if (ro) ro.disconnect(); });
       },
 
       /* ---------- tuiles du tableau de bord ---------- */
