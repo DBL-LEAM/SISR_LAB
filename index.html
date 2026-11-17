@@ -6527,17 +6527,35 @@
     @keyframes d-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     @keyframes d-slide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-    .rings { flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; align-content: center; gap: 4px; }
-    .rg { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--ink); }
-    .rg:hover { text-decoration: none; }
-    .rg-c { position: relative; width: 50px; height: 50px; }
-    .rg svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .rg .bg { stroke: var(--hairline); }
-    .rg .fg { stroke: var(--rc); stroke-linecap: round; animation: d-ring 1.2s cubic-bezier(.4, 0, .2, 1) both; transition: filter .3s; }
-    .rg:hover .fg { filter: drop-shadow(0 0 5px var(--rc)); }
-    .rg-c b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
-    .rg > span { font-size: 11.5px; color: var(--faint); }
-    @keyframes d-ring { from { stroke-dashoffset: var(--from); } to { stroke-dashoffset: var(--to); } }
+    .donut { flex: 1; display: flex; align-items: center; gap: 18px; min-height: 0; }
+    .dn-chart { position: relative; flex: none; width: 116px; height: 116px; }
+    .dn-chart svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
+    .dn-bg { stroke: var(--hairline); stroke-linecap: round; }
+    .dn-seg {
+      stroke: var(--rc); stroke-linecap: round; cursor: pointer;
+      transform-box: view-box; transform-origin: center;
+      animation: dn-grow 1.2s cubic-bezier(.4, 0, .2, 1) both;
+      transition: filter .2s ease-out, transform .2s ease-out, opacity .2s ease-out;
+    }
+    .dn-hot .dn-seg { opacity: .35; }
+    .dn-hot .dn-seg.on { opacity: 1; transform: scale(1.04); filter: drop-shadow(0 0 6px var(--rc)) brightness(1.1); }
+    @keyframes dn-grow { from { stroke-dasharray: 0 var(--C); opacity: 0; } }
+    .dn-mid { position: absolute; inset: 14px; display: grid; place-items: center; text-align: center; pointer-events: none; }
+    .dn-swap { display: flex; flex-direction: column; align-items: center; gap: 2px; animation: dn-pop .2s ease-out both; }
+    .dn-swap small { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dn-swap b { font-size: 26px; font-weight: 600; line-height: 1; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .dn-swap b i { font-style: normal; font-size: 13px; color: var(--muted); margin-left: 1px; }
+    @keyframes dn-pop { from { opacity: 0; transform: scale(.9); } }
+    .dn-legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+    .dn-legend li { animation: dn-in .4s ease-out both; }
+    @keyframes dn-in { from { opacity: 0; transform: translateX(-12px); } }
+    .dn-row { display: flex; align-items: center; gap: 9px; padding: 5px 8px; border-radius: 8px; font-size: 12.5px; color: var(--ink-2); transition: background .2s; }
+    .dn-row:hover { text-decoration: none; }
+    .dn-row.on { background: var(--hairline); }
+    .dn-row i { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--rc); }
+    .dn-row span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dn-row b { font-weight: 600; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .dn-row.on b { color: var(--ink); }
 
     .fl-big { display: flex; align-items: baseline; gap: 10px; }
     .fl-big b { font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: -.04em; color: var(--ink); }
@@ -6586,7 +6604,8 @@
     .home-two .panel h3 { font-size: 15px; font-weight: 600; }
 
     @media (prefers-reduced-motion: reduce) {
-      .live i, .caret, .log li, .rg .fg, .cs-cap span { animation: none; }
+      .live i, .caret, .log li, .dn-seg, .dn-swap, .dn-legend li, .cs-cap span { animation: none; }
+      .dn-seg { transition: none; }
     }
     @media (max-width: 1180px) {
       .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -15968,12 +15987,22 @@ Security Violation Count   : 0`;
           ['Quiz', Dash.pct(q.ok, q.all), '#quiz', 'var(--c-amber)'],
           ['TP', Dash.pct(tpDoneSteps, tpSteps), '#tp', 'var(--c-cyan)'],
         ];
-        const r = 20, C = 2 * Math.PI * r;
-        return `<article class="card tile glow t-rings">
-        <div class="tile-h"><h3>Maîtrise</h3><span class="more">global <b style="color:var(--ink);font-weight:600;margin-left:4px" class="num">${Stats.global()} %</b></span></div>
-        <div class="rings">${R.map(([l, p, h, c]) => `<a class="rg" href="${h}" style="--rc:${c}" aria-label="${l} : ${p} %">
-          <span class="rg-c"><svg viewBox="0 0 50 50" aria-hidden="true"><circle class="bg" cx="25" cy="25" r="${r}" fill="none" stroke-width="4"/><circle class="fg" cx="25" cy="25" r="${r}" fill="none" stroke-width="4" stroke-dasharray="${C.toFixed(2)}" style="--from:${C.toFixed(2)};--to:${(C * (1 - p / 100)).toFixed(2)};stroke-dashoffset:${(C * (1 - p / 100)).toFixed(2)}"/></svg><b>${p}</b></span>
-          <span>${l}</span></a>`).join('')}</div>
+        // donut segmenté : chaque axe occupe un quart de l'anneau, rempli selon sa progression
+        const S = 116, W = 12, r = S / 2 - W / 2, C = 2 * Math.PI * r, Q = C / 4, GAP = 7, room = Q - GAP - W;
+        const arc = (i, len) => `stroke-dasharray="${len.toFixed(2)} ${C.toFixed(2)}" stroke-dashoffset="${(-(i * Q + GAP / 2 + W / 2)).toFixed(2)}"`;
+        const g = Stats.global();
+        return `<article class="card tile glow t-rings" id="dnTile">
+        <div class="tile-h"><h3>Maîtrise</h3><span class="more">survole un axe</span></div>
+        <div class="donut">
+          <div class="dn-chart" style="--C:${C.toFixed(2)}">
+            <svg viewBox="0 0 ${S} ${S}" aria-hidden="true">
+              ${R.map((x, i) => `<circle class="dn-bg" cx="${S / 2}" cy="${S / 2}" r="${r}" fill="none" stroke-width="${W}" ${arc(i, room)}/>`).join('')}
+              ${R.map(([l, p, h, c], i) => p > 0 ? `<a href="${h}" tabindex="-1"><circle class="dn-seg" data-k="${i}" cx="${S / 2}" cy="${S / 2}" r="${r}" fill="none" stroke-width="${W}" style="--rc:${c};animation-delay:${(i * .08).toFixed(2)}s" ${arc(i, Math.max(room * p / 100, .01))}/></a>` : '').join('')}
+            </svg>
+            <div class="dn-mid" aria-live="polite" data-g="${g}"><span class="dn-swap"><small>global</small><b class="num">${g}<i>%</i></b></span></div>
+          </div>
+          <ul class="dn-legend">${R.map(([l, p, h, c], i) => `<li style="animation-delay:${(.5 + i * .08).toFixed(2)}s"><a class="dn-row" href="${h}" data-k="${i}" data-l="${l}" data-p="${p}" style="--rc:${c}" aria-label="${l} : ${p} %"><i></i><span>${l}</span><b>${p} %</b></a></li>`).join('')}</ul>
+        </div>
       </article>`;
       },
       dFlash(fs) {
@@ -16006,6 +16035,25 @@ Security Violation Count   : 0`;
           const step = now => { const k = Math.min((now - t0) / 700, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1 && el.isConnected) requestAnimationFrame(step); };
           el.textContent = '0'; requestAnimationFrame(step);
         });
+        // donut « Maîtrise » : survol d'un segment ou d'une ligne de légende
+        const dn = $('#dnTile', main);
+        if (dn) {
+          const mid = $('.dn-mid', dn); let cur = null;
+          const show = k => {
+            if (k === cur) return; cur = k;
+            $$('.dn-seg, .dn-row', dn).forEach(el => el.classList.toggle('on', el.dataset.k === k));
+            dn.classList.toggle('dn-hot', k != null);
+            const row = k != null && $(`.dn-row[data-k="${k}"]`, dn);
+            mid.innerHTML = row
+              ? `<span class="dn-swap"><small>${esc(row.dataset.l)}</small><b class="num">${row.dataset.p}<i>%</i></b></span>`
+              : `<span class="dn-swap"><small>global</small><b class="num">${mid.dataset.g}<i>%</i></b></span>`;
+          };
+          const pick = e => { const el = e.target.closest && e.target.closest('[data-k]'); show(el ? el.dataset.k : null); };
+          dn.addEventListener('pointerover', pick);
+          dn.addEventListener('focusin', pick);
+          dn.addEventListener('pointerleave', () => show(null));
+          dn.addEventListener('focusout', e => { if (!dn.contains(e.relatedTarget)) show(null); });
+        }
         // courbe d'activité
         const ch = $('#actChart', main);
         if (ch) {
